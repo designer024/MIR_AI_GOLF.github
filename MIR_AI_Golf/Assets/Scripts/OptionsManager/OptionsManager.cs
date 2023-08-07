@@ -21,7 +21,10 @@ namespace EthanLin
         
         [SerializeField] private StickHelper _stickHelper;
         
+        [SerializeField] private Button _requestQuitButton, _returnToMainSceneButton, _cancelQuitAppButton, _quitButton;
         [SerializeField] private Animator _optionsPageAnimator, _quitDialogueAnimator;
+        [SerializeField] private Text _dialogueText;
+        private bool _isWantQuitApp = false;
         
         [SerializeField] private Dropdown _dropdown;
         
@@ -109,6 +112,8 @@ namespace EthanLin
             GetVariationConfigInfo();
 
             SetChestPelvisSliderToSetPitchRollYaw();
+            
+            SetButtonsFunction();
             
             _currentPage = 0;
         }
@@ -230,7 +235,6 @@ namespace EthanLin
             _backToRawDataValueText.text = $"{_vectorVariationManager.GetVariationConfig.GetBodyPartVariationConfigList[_currentSelectBodyPart].bodyBackToRawData}";
         }
 
-        
         private void GetVariationConfigInfo()
         {
             #region 有關Variation Config設定
@@ -277,6 +281,28 @@ namespace EthanLin
                 _chestRollValueText.text = string.Format("{0:f2}°", aValue);
             });
         }
+        
+        /// <summary>
+        /// set some buttons function
+        /// </summary>
+        private void SetButtonsFunction()
+        {
+            _requestQuitButton.onClick.AddListener(() => { RequestExitThisScene(true, true); });
+            _returnToMainSceneButton.onClick.AddListener(() => { RequestExitThisScene(true, false); });
+        
+            _cancelQuitAppButton.onClick.AddListener(() => { RequestExitThisScene(false, _isWantQuitApp); });
+            _quitButton.onClick.AddListener(() =>
+            {
+                if (_isWantQuitApp)
+                {
+                    QuitThisApp();
+                }
+                else
+                {
+                    ReturnStartUpScene();
+                }
+            });
+        }
 
         public void TurnPage()
         {
@@ -320,25 +346,28 @@ namespace EthanLin
         public void SetBackgroundMusicOnOff(bool aEnable) => _bgmAudioSource.enabled = aEnable;
 
         #endregion
-        
-        
-        
+
         /// <summary>
         /// PIP on / off
         /// </summary>
         public void TurnOnOffPip() => _PipRawImage.SetActive(!_PipRawImage.activeInHierarchy);
         
+        private void RequestExitThisScene(bool aPop, bool aQuitApp)
+        {
+            _isWantQuitApp = aQuitApp;
+            _quitDialogueAnimator.Play(aPop ? "OpeningDialogue" : "ClosingDialogue");
+            _dialogueText.text = aQuitApp ? AllConfigs.QUIT_APP_MESSAGE : AllConfigs.RETURN_TO_MAIN_SCENE;
+        }
+    
         /// <summary>
         /// return to start up scene
         /// </summary>
-        public void ReturnStartUpScene()
+        private void ReturnStartUpScene()
         {
             _bluetoothManager.DisconnectAllBluetoothDevice();
             SceneManager.LoadScene(0);
         }
-        
-        public void RequestQuitApp(bool aPop) => _quitDialogueAnimator.Play(aPop ? "OpeningDialogue" : "ClosingDialogue");
 
-        public void QuitThisApp() => Application.Quit();
+        private void QuitThisApp() => Application.Quit();
     }
 }

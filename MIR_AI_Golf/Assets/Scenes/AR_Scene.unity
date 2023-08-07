@@ -2241,18 +2241,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 799589646}
-        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
-        m_MethodName: ReturnStartUpScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &292592525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2273,7 +2261,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cd12a5513117642009e0cef0a7078c7b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 925001bf343b9470e80b079d89c95eff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2591,7 +2579,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1040091345}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.28928572
+  m_Size: 0.3472217
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3496,18 +3484,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: PlayTheSound
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 799589646}
-        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
-        m_MethodName: RequestQuitApp
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5521,18 +5497,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 799589646}
-        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
-        m_MethodName: QuitThisApp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &786107920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5720,8 +5684,13 @@ MonoBehaviour:
   _bluetoothManager: {fileID: 1182899914}
   _vectorVariationManager: {fileID: 959367100}
   _stickHelper: {fileID: 1094003297}
+  _requestQuitButton: {fileID: 1586802697}
+  _returnToMainSceneButton: {fileID: 292592524}
+  _cancelQuitAppButton: {fileID: 463209607}
+  _quitButton: {fileID: 786107919}
   _optionsPageAnimator: {fileID: 7781251}
   _quitDialogueAnimator: {fileID: 1066593937}
+  _dialogueText: {fileID: 843418691}
   _dropdown: {fileID: 1333692851}
   _bgmAudioSource: {fileID: 514326288}
   _stickButtonText: {fileID: 745519364}
@@ -11245,18 +11214,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 799589646}
-        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
-        m_MethodName: RequestQuitApp
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &1586802698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13165,7 +13122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1334554}
+  m_AnchoredPosition: {x: 0, y: 1571934.5}
   m_SizeDelta: {x: 0, y: 560}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1780375656

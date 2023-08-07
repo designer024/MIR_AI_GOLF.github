@@ -32,11 +32,14 @@ namespace EthanLin.Config
         /// <summary>
         /// Screen shot 儲存路徑
         /// </summary>
-        public static string SCREENSHOT_FILE_PATH = $"{ANDROID_ROOT_STORAGE_PATH}Pictures/SpaceCapsule_Bluetooth/";
+        public static string SCREENSHOT_FILE_PATH = $"{ANDROID_ROOT_STORAGE_PATH}Pictures{Path.DirectorySeparatorChar}SpaceCapsule_Bluetooth{Path.DirectorySeparatorChar}";
 
         /// <summary>
         /// Screen shot 儲存名稱前綴
         /// </summary>
         public const string SCREENSHOT_FILE_NAME = "SpaceCapsule-";
+        
+        public const string QUIT_APP_MESSAGE = "ARE YOU SURE TO QUIT THIS GREAT APP";
+        public const string RETURN_TO_MAIN_SCENE = "ARE YOU SURE TO RETURN TO MAIN SCENE";
     }
 }
