@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace EthanLin.Variation
 {
+    /// <summary>
+    /// 設置一些打折的參數
+    /// </summary>
     public class VariationConfig : MonoBehaviour
     {
         [Serializable]
@@ -19,15 +22,15 @@ namespace EthanLin.Variation
             /// </summary>
             [Header("部位名稱")] [SerializeField] private string _bodyName;
             /// <summary>
-            /// 閥值
+            /// 閥值, 0 ~ 20
             /// </summary>
             [Header("閥值")] [Range(0f, 20f)] public float bodyThreshold;
             /// <summary>
-            /// 打折數
+            /// 打折數, 0 ~ 1
             /// </summary>
             [Header("打折數")] [Range(0f, 1f)] public float bodyDiscount;
             /// <summary>
-            /// 何時回RawData
+            /// 何時回RawData, 25 ~ 45
             /// </summary>
             [Header("何時回RawData")] [Range(25f, 45f)] public float bodyBackToRawData;
         }
