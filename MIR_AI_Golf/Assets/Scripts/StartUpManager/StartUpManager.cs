@@ -13,20 +13,51 @@ namespace EthanLin
         
         [SerializeField] private  Text _scanResultText;
         
-        [SerializeField] private Button _startButton;
-        [SerializeField] private int _defaultSceneIndex;
+        [SerializeField] private Button _startArButton;
+        [SerializeField] private Button _startNormalButton;
+        private Button _currentTriggerButton, _theOtherButton;
 
         private void OnEnable() => BluetoothDelegateManager.scanDeviceResultEvent += GetScanResult;
 
         private void OnDisable() => BluetoothDelegateManager.scanDeviceResultEvent -= GetScanResult;
+        
+        private enum DemoMode
+        {
+            /// <summary>
+            /// 一般的
+            /// </summary>
+            NORMAL_MODE = 1,
+            /// <summary>
+            /// AR
+            /// </summary>
+            AR_MODE = 2
+        }
+        
+        private DemoMode _demoModeEnum;
 
         private void Start()
         {
-            // _scanResultText.text = $"{Screen.width}x{Screen.height}";
+            _demoModeEnum = DemoMode.NORMAL_MODE;
+            
+            InitButtonAndUi();
+        }
+        
+        /// <summary>
+        /// Init buttons
+        /// </summary>
+        private void InitButtonAndUi()
+        {
             _scanResultText.text = "";
-            _startButton.interactable = true;
-            _startButton.transform.GetChild(0).GetComponent<Text>().color = Color.white;
-            _startButton.onClick.AddListener(StartToScanDevice);
+            _currentTriggerButton = null;
+            _theOtherButton = null;
+        
+            _startArButton.interactable = true;
+            _startArButton.GetComponent<ScanButtonUi>().SetLabelAndIcon(Color.white);
+            _startArButton.onClick.AddListener(() => { StartToScanDevice(_startArButton,_startNormalButton,  DemoMode.AR_MODE); });
+        
+            _startNormalButton.interactable = true;
+            _startNormalButton.GetComponent<ScanButtonUi>().SetLabelAndIcon(Color.white);
+            _startNormalButton.onClick.AddListener(() => { StartToScanDevice(_startNormalButton, _startArButton, DemoMode.NORMAL_MODE); });
         }
 
         private void Update()
@@ -37,36 +68,46 @@ namespace EthanLin
             }
         }
 
-        private void StartToScanDevice()
+        private void StartToScanDevice(Button aCurrentSelectedButton, Button aTheOtherButton, DemoMode aDemoMode)
         {
-            _scanResultText.color = Color.white;
-            _scanResultText.text = "             Searching...";
-            _startButton.interactable = false;
-            _startButton.transform.GetChild(0).GetComponent<Text>().color = new Color(1f, 1f, 1f, 0.3f);
+            _scanResultText.text = "Searching...";
+
+            _demoModeEnum = aDemoMode;
+            aCurrentSelectedButton.interactable = false;
+            aTheOtherButton.interactable = false;
+            aCurrentSelectedButton.GetComponent<ScanButtonUi>().SetLabelAndIcon(new Color(0f, 1f, 1f, 1f));
+            _currentTriggerButton = aCurrentSelectedButton;
+            _theOtherButton = aTheOtherButton;
+        
             _bluetoothManager.ScanBluetoothDevices();
         }
 
         /// <summary>
         /// 快去AR場景
         /// </summary>
-        private void GoToDemoScene() => SceneManager.LoadScene(_defaultSceneIndex);
+        private void GoToDemoScene() => SceneManager.LoadScene((int)_demoModeEnum);
         public void GoToSceneTo(int aSceneIndex) => SceneManager.LoadScene(aSceneIndex);
 
         private void GetScanResult(bool aResult)
         {
-            _scanResultText.color = aResult ? Color.white : Color.yellow;
-            _scanResultText.text = aResult ? "             Device Found" : "Please make sure the device is connected correctly and turn on the power";
-            
+            _scanResultText.text = aResult ? "Device Found" : $"Please make sure device is connected correctly,{Environment.NewLine}and turn on the power";
+        
             if (aResult)
             {
-                _startButton.interactable = false;
-                _startButton.transform.GetChild(0).GetComponent<Text>().color = new Color(1f, 1f, 1f, 0.3f);
+                _currentTriggerButton.GetComponent<ScanButtonUi>().SetIcon(new Color(0f, 1f, 1f, 1f));
+                _currentTriggerButton.interactable = false;
+                _theOtherButton.interactable = false;
+                _currentTriggerButton = null;
+                _theOtherButton = null;
                 Invoke(nameof(GoToDemoScene), 1f);
             }
             else
             {
-                _startButton.interactable = true;
-                _startButton.transform.GetChild(0).GetComponent<Text>().color = Color.white;
+                _currentTriggerButton.GetComponent<ScanButtonUi>().SetLabelAndIcon(Color.white);
+                _currentTriggerButton.interactable = true;
+                _theOtherButton.interactable = true;
+                _currentTriggerButton = null;
+                _theOtherButton = null;
             }
         }
     }
