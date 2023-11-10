@@ -82,12 +82,12 @@ namespace EthanLin.Variation
             if (_dataStringToQuaternionHelper.GetBluetoothDataReceived)
             {
                 // 使用Variation
-                if (_variationConfig.IsUsingVariation)
+                if (_variationConfig.GetIsUsingVariation)
                 {
                     // 沒有使用任何模式之校正
                     if (_stickHelper.GetIsUsingNormalMode == false && _calibrateHelperV2.GetIsUsingAdvancedMode == false)
                     {
-                        Debug.Log($"{AllConfigs.DEBUG_TAG}, isUsing 沒有使用任何模式之校正");
+                        // Debug.Log($"{AllConfigs.DEBUG_TAG}, isUsing 沒有使用任何模式之校正");
                         
                         #region 上半身
 
@@ -215,7 +215,7 @@ namespace EthanLin.Variation
                     else if (_stickHelper.GetIsUsingNormalMode == false && _calibrateHelperV2.GetIsUsingAdvancedMode)
                     {
                         // 記得要先變更各個閥值、打折數、BackToRawData值
-                        Debug.Log($"{AllConfigs.DEBUG_TAG}, isUsing 有使用進階模式之校正");
+                        // Debug.Log($"{AllConfigs.DEBUG_TAG}, isUsing 有使用進階模式之校正");
                 
                         #region 上半身
 
@@ -343,7 +343,7 @@ namespace EthanLin.Variation
                     // 有使用普通模式之校正
                     else if (_stickHelper.GetIsUsingNormalMode && _calibrateHelperV2.GetIsUsingAdvancedMode == false)
                     {
-                        Debug.Log($"{AllConfigs.DEBUG_TAG}, isUsing 有使用普通模式之校正");
+                        // Debug.Log($"{AllConfigs.DEBUG_TAG}, isUsing 有使用普通模式之校正");
                         
                         #region 上半身
 
@@ -455,7 +455,7 @@ namespace EthanLin.Variation
                     // 沒有使用任何模式之校正
                     if (_stickHelper.GetIsUsingNormalMode == false && _calibrateHelperV2.GetIsUsingAdvancedMode == false)
                     {
-                        Debug.Log($"{AllConfigs.DEBUG_TAG}, NoUsing 只用RawData");
+                        // Debug.Log($"{AllConfigs.DEBUG_TAG}, NoUsing 只用RawData");
                         
                         for (int i = 1; i < 11; ++i)
                         {
@@ -465,7 +465,7 @@ namespace EthanLin.Variation
                     // 有使用進階模式之校正
                     else if (_stickHelper.GetIsUsingNormalMode == false && _calibrateHelperV2.GetIsUsingAdvancedMode)
                     {
-                        Debug.Log($"{AllConfigs.DEBUG_TAG}, NoUsing 只用進階校正");
+                        // Debug.Log($"{AllConfigs.DEBUG_TAG}, NoUsing 只用進階校正");
                         
                         for (int i = 1; i < 11; ++i)
                         {
@@ -475,7 +475,7 @@ namespace EthanLin.Variation
                     // 有使用普通模式之校正
                     else if (_stickHelper.GetIsUsingNormalMode && _calibrateHelperV2.GetIsUsingAdvancedMode == false)
                     {
-                        Debug.Log($"{AllConfigs.DEBUG_TAG}, NoUsing 只用普通校正");
+                        // Debug.Log($"{AllConfigs.DEBUG_TAG}, NoUsing 只用普通校正");
                         
                         for (int i = 1; i < 11; ++i)
                         {

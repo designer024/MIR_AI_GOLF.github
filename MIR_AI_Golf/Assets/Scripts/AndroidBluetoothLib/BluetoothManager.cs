@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace EthanLin.AndroidBluetoothLib
 {
@@ -16,6 +17,8 @@ namespace EthanLin.AndroidBluetoothLib
         /// 是否有找到裝置
         /// </summary>
         private bool _isFoundDevice = false;
+
+        #region Unity 生命週期
 
         private void OnEnable()
         {
@@ -41,6 +44,8 @@ namespace EthanLin.AndroidBluetoothLib
         {
             _bluetoothHelper.DisconnectAllBluetoothDevice();
         }
+
+        #endregion
 
         #region private 方法
 

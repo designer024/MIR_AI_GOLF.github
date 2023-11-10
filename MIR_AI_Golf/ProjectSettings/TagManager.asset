@@ -4,20 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Role
-  - RoleSelectHelper
-  - HolsterR
-  - FireTrigger
-  - HolsterL
-  - VectorVariationManager
-  - DataStringToQuaternionHelper
-  - RoleMixed
-  - FoundDeviceList
   - SoundManager
-  - StickHelper
+  - Role
+  - BluetoothManager
+  - VectorVariationManager
   - CalibrateHelper
-  - ReadCsvDataButton
-  - PlaybackHelper
+  - StickHelper
+  - FireTrigger
+  - HolsterR
+  - HolsterL
+  - RoleSelectHelper
+  - RoleMixed
+  - AlwaysFaceRole
   layers:
   - Default
   - TransparentFX

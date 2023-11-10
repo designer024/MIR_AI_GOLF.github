@@ -38,11 +38,11 @@ namespace EthanLin.Variation
         /// <summary>
         /// 使用Variation
         /// </summary>
-        [Header("使用 Variation")] [SerializeField] private bool _useVariation = false;
+        [Header("使用 Variation")] [SerializeField] private bool _useVariation = true;
         /// <summary>
         /// 使用Variation get
         /// </summary>
-        public bool IsUsingVariation => _useVariation;
+        public bool GetIsUsingVariation => _useVariation;
         /// <summary>
         /// 使用Variation set
         /// </summary>

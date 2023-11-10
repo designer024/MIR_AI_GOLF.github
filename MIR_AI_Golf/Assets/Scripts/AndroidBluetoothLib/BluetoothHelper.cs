@@ -54,7 +54,7 @@ namespace EthanLin.AndroidBluetoothLib
         {
             if (AndroidBluetoothJavaObject != null)
             {
-                AndroidBluetoothJavaObject.Call("requestManageExternalStoragePermission");
+                AndroidBluetoothJavaObject.Call("requestManageExternalStoragePermissionWithPath", AllConfigs.CSV_ROOT_FOLDER);
             }
             else
             {

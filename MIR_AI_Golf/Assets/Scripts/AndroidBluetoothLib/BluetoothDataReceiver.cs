@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 using EthanLin.AssignDataHelper;
 
 namespace EthanLin.AndroidBluetoothLib
@@ -12,7 +13,8 @@ namespace EthanLin.AndroidBluetoothLib
         [SerializeField] private BluetoothManager _bluetoothManager;
 
         [SerializeField] private DataStringToQuaternionHelper _dataStringToQuaternionHelper;
-    
+
+        
         private string _dataString;
 
         private void Start()

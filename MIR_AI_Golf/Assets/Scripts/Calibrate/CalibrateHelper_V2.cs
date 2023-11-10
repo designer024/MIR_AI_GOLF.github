@@ -68,6 +68,7 @@ namespace EthanLin.CalibrateHelper
 
         // [SerializeField] private Text _debugTxt;
         [SerializeField] private Button _calibrateButton;
+        [SerializeField] private Text _calibrateButtonLabel;
 
         #endregion
 
@@ -119,8 +120,8 @@ namespace EthanLin.CalibrateHelper
             InitAllTableHelper();
 
             _currentCalibrateIndex = 0;
-            _calibrateButton.transform.GetChild(0).GetComponent<Text>().text = $"SET{System.Environment.NewLine}{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
-            _calibrateButton.transform.GetChild(0).GetComponent<Text>().color = Color.white;
+            _calibrateButtonLabel.text = $"SET{System.Environment.NewLine}{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
+            _calibrateButtonLabel.color = Color.white;
             _calibrateButton.onClick.AddListener(SetDirections);
         }
 
@@ -367,8 +368,8 @@ namespace EthanLin.CalibrateHelper
                     {
                         _calibrateTableHelperDictionary[i].GetQuadrantAngles();
                     }
-                    _calibrateButton.transform.GetChild(0).GetComponent<Text>().text = "CALIBRATED";
-                    _calibrateButton.transform.GetChild(0).GetComponent<Text>().color = Color.yellow;
+                    _calibrateButtonLabel.text = "CALIBRATED";
+                    _calibrateButtonLabel.color = Color.yellow;
                     
                     // debug
                     // _debugTxt.text = $"部位:\n{_calibrateTableHelperDictionary[_bodyDictionary[1]].PartName}\n{_calibrateTableHelperDictionary[_bodyDictionary[1]].QuadrantAngles.Length}, {_calibrateTableHelperDictionary[_bodyDictionary[1]].SensorDirections.Length}";
@@ -387,7 +388,7 @@ namespace EthanLin.CalibrateHelper
                 }
                 else
                 {
-                    _calibrateButton.transform.GetChild(0).GetComponent<Text>().text = $"SET\n{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
+                    _calibrateButtonLabel.text = $"SET{System.Environment.NewLine}{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
                 }
             }
             else
@@ -395,8 +396,8 @@ namespace EthanLin.CalibrateHelper
                 // IsCalibrated = false;
                 IsUsingAdvancedMode = false;
                 _currentCalibrateIndex = 0;
-                _calibrateButton.transform.GetChild(0).GetComponent<Text>().text = $"SET\n{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
-                _calibrateButton.transform.GetChild(0).GetComponent<Text>().color = Color.white;
+                _calibrateButtonLabel.text = $"SET{System.Environment.NewLine}{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
+                _calibrateButtonLabel.color = Color.white;
                 
                 _vectorVariationManager.InitAllTableHelperDataStringToQuaternionHelper();
             }
@@ -447,8 +448,8 @@ namespace EthanLin.CalibrateHelper
                     {
                         _calibrateTableHelperDictionary[i].GetQuadrantAngles();
                     }
-                    _calibrateButton.transform.GetChild(0).GetComponent<Text>().text = "CALIBRATED";
-                    _calibrateButton.transform.GetChild(0).GetComponent<Text>().color = Color.blue;
+                    _calibrateButtonLabel.text = "CALIBRATED";
+                    _calibrateButtonLabel.color = Color.blue;
                     
                     // debug
                     // _debugTxt.text = $"部位:\n{_calibrateTableHelperDictionary[_bodyDictionary[1]].PartName}\n{_calibrateTableHelperDictionary[_bodyDictionary[1]].QuadrantAngles.Length}, {_calibrateTableHelperDictionary[_bodyDictionary[1]].SensorDirections.Length}";
@@ -465,7 +466,7 @@ namespace EthanLin.CalibrateHelper
                 }
                 else
                 {
-                    _calibrateButton.transform.GetChild(0).GetComponent<Text>().text = $"SET\n{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
+                    _calibrateButtonLabel.text = $"SET{System.Environment.NewLine}{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
                 }
             }
             else
@@ -473,8 +474,8 @@ namespace EthanLin.CalibrateHelper
                 // IsCalibrated = false;
                 IsUsingAdvancedMode = false;
                 _currentCalibrateIndex = 0;
-                _calibrateButton.transform.GetChild(0).GetComponent<Text>().text = $"SET\n{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
-                _calibrateButton.transform.GetChild(0).GetComponent<Text>().color = Color.white;
+                _calibrateButtonLabel.text = $"SET{System.Environment.NewLine}{_currentCalibrateIndex} {_calibrateRef[_currentCalibrateIndex]}";
+                _calibrateButtonLabel.color = Color.white;
                 
                 _vectorVariationManager.InitAllTableHelperDataStringToQuaternionHelper();
             }

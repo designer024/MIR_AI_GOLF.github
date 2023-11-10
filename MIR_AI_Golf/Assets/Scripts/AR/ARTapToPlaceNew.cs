@@ -14,7 +14,9 @@ namespace EthanLin
         
         [SerializeField] private ARRaycastManager _arRaycastManager;
 
-        [SerializeField] private RoleSelectHelper _roleSelectHelper;
+        [SerializeField] private AR_RoleSelectHelper _arRoleSelectHelper;
+
+        [SerializeField] private AlwaysFaceRole _alwaysFaceRole;
         
         [SerializeField] private GameObject _objectToPlace;
 
@@ -25,9 +27,9 @@ namespace EthanLin
 
         private void Start()
         {
-            DestroyAllArObject();
+            KillAllArObject();
             
-            foreach (var btn in _roleSelectHelper.GetSelectRoleButtons())
+            foreach (var btn in _arRoleSelectHelper.GetSelectRoleButtons)
             {
                 btn.interactable = false;
             }
@@ -42,12 +44,12 @@ namespace EthanLin
 
             if (_arRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
             {
-                // DestroyAllArObject();
-                
                 var hitPose = hits[0].pose;
 
+                _alwaysFaceRole.GetDifferentAngle();
+                
                 GameObject mixed = Instantiate(_objectToPlace, hitPose.position, hitPose.rotation);
-                foreach (Button btn in _roleSelectHelper.GetSelectRoleButtons())
+                foreach (Button btn in _arRoleSelectHelper.GetSelectRoleButtons)
                 {
                     btn.interactable = true;
                 }
@@ -86,7 +88,7 @@ namespace EthanLin
         /// <summary>
         /// 將Mixed GameObject 砍掉
         /// </summary>
-        private void DestroyAllArObject()
+        private void KillAllArObject()
         {
             GameObject[] rolesMixed = GameObject.FindGameObjectsWithTag("RoleMixed");
             if (rolesMixed != null && rolesMixed.Length > 0)

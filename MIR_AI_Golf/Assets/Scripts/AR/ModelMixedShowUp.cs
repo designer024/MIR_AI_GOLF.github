@@ -1,3 +1,4 @@
+using EthanLin.Config;
 using UnityEngine;
 
 namespace EthanLin
@@ -9,14 +10,14 @@ namespace EthanLin
     {
         private void Start()
         {
-            RoleSelectHelper roleSelectHelper = GameObject.FindWithTag("RoleSelectHelper").GetComponent<RoleSelectHelper>();
+            // AR_RoleSelectHelper roleSelectHelper = GameObject.FindWithTag("RoleSelectHelper").GetComponent<AR_RoleSelectHelper>();
 
             for (int i = 0 ; i < transform.childCount - 1; ++i)
             {
                 transform.GetChild(i).transform.gameObject.SetActive(false);
             }
 
-            transform.GetChild(roleSelectHelper.GetCurSelectedIndex).transform.gameObject.SetActive(true);
+            transform.GetChild(AllConfigs.CURRENT_SELECTED_ROLE_INDEX).transform.gameObject.SetActive(true);
         }
     }
 }
