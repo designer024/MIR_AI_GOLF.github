@@ -213,6 +213,22 @@ namespace EthanLin.AssignDataHelper
                 Debug.LogError($"{AllConfigs.DEBUG_TAG} VectorVariationManager is null!");
             }
         }
+
+        /// <summary>
+        /// 如果使用球球，我就要滾遠一點
+        /// </summary>
+        public void ToldMeToGoFarAway()
+        {
+            this.gameObject.transform.position = new Vector3(100f, 0f, 0f);
+        }
+        
+        /// <summary>
+        /// 如果使用球球，我就要滾遠一點
+        /// </summary>
+        public void ToldMeToBack()
+        {
+            this.gameObject.transform.position = Vector3.zero;
+        }
     }
 }
 
