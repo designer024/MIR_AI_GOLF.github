@@ -35,13 +35,25 @@ namespace EthanLin.AssignDataHelper
             // _testChestData = false;
             // _testText.text = $"{_testChestData}";
         }
+        
+        private void InitQuaternionDictionary()
+        {
+            _rawDataQuaternionDictionary.Clear();
+
+            for (int i = 1; i < 11; ++i)
+            {
+                _rawDataQuaternionDictionary.Add(i, Quaternion.identity);
+            }
+        }
 
         public void ConvertDataStringToQuaternion(string aDataString)
         {
             if (aDataString.Contains("#"))
             {
-                int upperId, downId;
-                Quaternion tempUpperQuaternion, tempDownQuaternion;
+                int upperId;
+                // int downId;
+                Quaternion tempUpperQuaternion;
+                // Quaternion tempDownQuaternion;
 
                 string[] stringArray = aDataString.Split('#');
                 if (stringArray.Length == 5)
@@ -59,19 +71,13 @@ namespace EthanLin.AssignDataHelper
 
                     if (upperId == AllPartNameIndex.CHEST)
                     {
+                        // Normal模式下
                         if (_alwaysFaceRole.GetSceneIndex == 1 && _alwaysFaceRole.IsFaceRoleInNormalScene == false)
                         {
                             _alwaysFaceRole.FaceRole();
                         }
-                        // else if (_alwaysFaceRole.GetSceneIndex == 2 && _alwaysFaceRole.IsFaceRoleInArScene == false)
-                        // {
-                        //     _alwaysFaceRole.FaceRole();
-                        // }
-                        
-                        // _testChestData = true;
-                        // _faceRoleDelegateManager.UpdateGotChestDataResult(true);
-                        // _testText.text = $"{_alwaysFaceRole.IsFaceRole}";
                     }
+                    
                     // _rawDataQuaternionDictionary[int.Parse(stringArray[0])] = new Quaternion(float.Parse(stringArray[1]), float.Parse(stringArray[2]), float.Parse(stringArray[3]), float.Parse(stringArray[4]));
                     
                     // downId = int.Parse(stringArray[5]);
@@ -93,18 +99,6 @@ namespace EthanLin.AssignDataHelper
                 }
             }
         }
-
-        private void InitQuaternionDictionary()
-        {
-            _rawDataQuaternionDictionary.Clear();
-
-            for (int i = 1; i < 11; ++i)
-            {
-                _rawDataQuaternionDictionary.Add(i, Quaternion.identity);
-            }
-        }
-
-        
     }
 }
 

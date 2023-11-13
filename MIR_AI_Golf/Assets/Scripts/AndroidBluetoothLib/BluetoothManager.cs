@@ -105,6 +105,12 @@ namespace EthanLin.AndroidBluetoothLib
         public void DisconnectAllBluetoothDevice() => _bluetoothHelper.DisconnectAllBluetoothDevice();
 
         /// <summary>
+        /// 是否只用上半身
+        /// </summary>
+        /// <param name="aOnlyUpper"> true: 只用上半身</param>
+        public void SwitchUpperOrFullBody(bool aOnlyUpper) => _bluetoothHelper.SwitchUpperOrFullBody(aOnlyUpper);
+
+        /// <summary>
         /// Called by android library 在StartUp場景使用
         /// </summary>
         public void ReceiveMessageFromAndroidNative(string aNativeMessage)

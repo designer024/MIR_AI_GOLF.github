@@ -231,6 +231,7 @@ namespace EthanLin
 
         public void SetOnlyUpperBody(bool aOnlyUpperBody)
         {
+            _bluetoothManager.SwitchUpperOrFullBody(aOnlyUpperBody);
             _variationConfig.SetOnlyUpperBody(aOnlyUpperBody);
 
             if (_sceneIndex == 1)

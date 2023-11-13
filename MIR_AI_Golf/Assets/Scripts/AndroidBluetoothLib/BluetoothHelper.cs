@@ -213,6 +213,22 @@ namespace EthanLin.AndroidBluetoothLib
                 Debug.LogError($"{AllConfigs.DEBUG_TAG} Error, bluetooth library Java object is null!!!");
             }
         }
+
+        /// <summary>
+        /// 是否只用上半身
+        /// </summary>
+        /// <param name="aOnlyUpper"> true: 只用上半身</param>
+        public void SwitchUpperOrFullBody(bool aOnlyUpper)
+        {
+            if (AndroidBluetoothJavaObject != null)
+            {
+                AndroidBluetoothJavaObject.Call("switchUpperOrFullBody", aOnlyUpper);
+            }
+            else
+            {
+                Debug.LogError($"{AllConfigs.DEBUG_TAG} Error, bluetooth library Java object is null!!!");
+            }
+        }
     }
 }
 
