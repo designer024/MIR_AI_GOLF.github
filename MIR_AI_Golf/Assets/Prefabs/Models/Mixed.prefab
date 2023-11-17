@@ -2201,7 +2201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8802215702856830011
 Transform:
   m_ObjectHideFlags: 0
@@ -2284,7 +2284,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2322,7 +2322,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628328393233753840}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b75525b97b4f549228da19173722bd1e, type: 3}
   m_Name: 
@@ -2832,7 +2832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7998817916140432620
 Transform:
   m_ObjectHideFlags: 0
@@ -4119,6 +4119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1646456260192760416}
+  - component: {fileID: 2672977420500621148}
   m_Layer: 0
   m_Name: RotateCenter
   m_TagString: Untagged
@@ -4142,6 +4143,19 @@ Transform:
   - {fileID: 766914706034026349}
   m_Father: {fileID: 7567939207442898794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2672977420500621148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120128286926973107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352ca4058bc28472b8155a54896cd845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanRotateRole: 0
 --- !u!1 &3137421964407485304
 GameObject:
   m_ObjectHideFlags: 0
@@ -4453,9 +4467,12 @@ MonoBehaviour:
   _fullBodyMaterials:
   - {fileID: 2100000, guid: 7ef1863808bf0405ba5eff7b565e866e, type: 2}
   _upperbodyMaterials:
-  - {fileID: 2100000, guid: e428a840c2bae4ce9bf6e049f81c2599, type: 2}
-  LeonardShoes: {fileID: 0}
-  LeonardPants: {fileID: 0}
+  - {fileID: 2100000, guid: 6f268aa6a40824fc0aaaa7b27d168d26, type: 2}
+  _skinnedMeshRendererBody: {fileID: 0}
+  _skinnedMeshRendererCollar: {fileID: 0}
+  _skinnedMeshRendererSweater: {fileID: 0}
+  _skinnedMeshRendererPants: {fileID: 0}
+  _skinnedMeshRendererShoes: {fileID: 0}
 --- !u!1 &3487749492181167317
 GameObject:
   m_ObjectHideFlags: 0
@@ -4575,9 +4592,12 @@ MonoBehaviour:
   _fullBodyMaterials:
   - {fileID: 2100000, guid: c8bd1067afd4e49448cf320baf60a0ad, type: 2}
   _upperbodyMaterials:
-  - {fileID: 2100000, guid: cfaa1ba057493453e941dc83cf480545, type: 2}
-  LeonardShoes: {fileID: 0}
-  LeonardPants: {fileID: 0}
+  - {fileID: 2100000, guid: 856476d7076d740738694a999fa66ed0, type: 2}
+  _skinnedMeshRendererBody: {fileID: 0}
+  _skinnedMeshRendererCollar: {fileID: 0}
+  _skinnedMeshRendererSweater: {fileID: 0}
+  _skinnedMeshRendererPants: {fileID: 0}
+  _skinnedMeshRendererShoes: {fileID: 0}
 --- !u!1 &3543496702642552288
 GameObject:
   m_ObjectHideFlags: 0
@@ -4785,7 +4805,7 @@ MonoBehaviour:
   _alwaysFaceRole: {fileID: 0}
   _leftUpperArmObject: {fileID: 8214027652305475188}
   _rightUpperArmObject: {fileID: 8256511586178646571}
-  _chestObject: {fileID: 4817214481876616196}
+  _chestObject: {fileID: 8962411731135256759}
   _frontChestObject: {fileID: 2118175997361704594}
   _leftForeArmObject: {fileID: 8386556829489085221}
   _leftForeArmRealObject: {fileID: 2371381103464842843}
@@ -4819,9 +4839,13 @@ MonoBehaviour:
   _fullBodyMaterials:
   - {fileID: 2100000, guid: 3e387b19475804b83bc32ecd5adb0c14, type: 2}
   _upperbodyMaterials:
-  - {fileID: 2100000, guid: 086f57164b9ef4d7d8bbb39da33ce87c, type: 2}
-  LeonardShoes: {fileID: 8349313911966911128}
-  LeonardPants: {fileID: 2154785273050029761}
+  - {fileID: 2100000, guid: 7a81e220bb2184ac39dd262bc6099eb3, type: 2}
+  - {fileID: 2100000, guid: 7eaeae6ad0cd34acf8977f3b6f638f4f, type: 2}
+  _skinnedMeshRendererBody: {fileID: 7694295419351909090}
+  _skinnedMeshRendererCollar: {fileID: 8272053251928163920}
+  _skinnedMeshRendererSweater: {fileID: 3871568471406583377}
+  _skinnedMeshRendererPants: {fileID: 5042620298621265881}
+  _skinnedMeshRendererShoes: {fileID: 1062242519930477492}
 --- !u!1 &3633765439256922436
 GameObject:
   m_ObjectHideFlags: 0
@@ -10507,7 +10531,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3eef36ba4911442cea4329b8aea3fc19, type: 2}
+  - {fileID: 2100000, guid: 42fed67ca0e994ab4a8b8982f5c45e69, type: 2}
   - {fileID: 2100000, guid: 82a5aeab75c23478cbba27f1b4ab8c3d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -11078,7 +11102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7832093336713127977
 Transform:
   m_ObjectHideFlags: 0
@@ -11161,7 +11185,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -11641,7 +11665,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cfaa1ba057493453e941dc83cf480545, type: 2}
+  - {fileID: 2100000, guid: 856476d7076d740738694a999fa66ed0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11772,7 +11796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4040137533613779973
 Transform:
   m_ObjectHideFlags: 0
@@ -11855,7 +11879,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -11893,7 +11917,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5206765430540897240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76ed7dfffce95474b8bc620eb9d0367e, type: 3}
   m_Name: 
@@ -13315,10 +13339,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e1d56f5ce3748dd439118e278908373a, type: 2}
   - {fileID: 2100000, guid: 3bc16e83b8df6c149b52d79617ee998d, type: 2}
   _upperbodyMaterials:
-  - {fileID: 2100000, guid: 3eef36ba4911442cea4329b8aea3fc19, type: 2}
+  - {fileID: 2100000, guid: 42fed67ca0e994ab4a8b8982f5c45e69, type: 2}
   - {fileID: 2100000, guid: 82a5aeab75c23478cbba27f1b4ab8c3d, type: 2}
-  LeonardShoes: {fileID: 0}
-  LeonardPants: {fileID: 0}
+  _skinnedMeshRendererBody: {fileID: 0}
+  _skinnedMeshRendererCollar: {fileID: 0}
+  _skinnedMeshRendererSweater: {fileID: 0}
+  _skinnedMeshRendererPants: {fileID: 0}
+  _skinnedMeshRendererShoes: {fileID: 0}
 --- !u!1 &6287191428160055546
 GameObject:
   m_ObjectHideFlags: 0
@@ -13502,7 +13529,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e428a840c2bae4ce9bf6e049f81c2599, type: 2}
+  - {fileID: 2100000, guid: 6f268aa6a40824fc0aaaa7b27d168d26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15611,7 +15638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &266235402541125213
 Transform:
   m_ObjectHideFlags: 0
@@ -15694,7 +15721,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -16180,7 +16207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5638036151217641129
 Transform:
   m_ObjectHideFlags: 0
@@ -16437,7 +16464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9189145216693752281
 Transform:
   m_ObjectHideFlags: 0
@@ -16520,7 +16547,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

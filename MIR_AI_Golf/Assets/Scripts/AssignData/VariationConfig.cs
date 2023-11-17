@@ -51,7 +51,7 @@ namespace EthanLin.Variation
         /// <summary>
         /// 只有上半身!?
         /// </summary>
-        [Header("只有上半身!?")] [SerializeField] private bool _onlyUpperBody = true;
+        [Header("只有上半身!?")] [SerializeField] private bool _onlyUpperBody = false;
         /// <summary>
         /// 只有上半身!? get
         /// </summary>
@@ -65,6 +65,10 @@ namespace EthanLin.Variation
         /// 胸 Pitch, -15 ~ 15
         /// </summary>
         [Header("胸 Pitch, -15 ~ 15")] [Range(-15f, 15f)] public float chestPitchAdjustValue;
+        /// <summary>
+        /// 胸 Yaw, -15 ~ 15
+        /// </summary>
+        [Header("胸 Yaw, -15 ~ 15")] [Range(-15f, 15f)] public float chestYawAdjustValue;
         /// <summary>
         /// 胸 Roll, -15 ~ 15
         /// </summary>

@@ -179,7 +179,7 @@ namespace EthanLin.AssignDataHelper
                 {
                     _chestObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.CHEST];
                     // 最後微調
-                    _chestObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.chestPitchAdjustValue, 0f, _vectorVariationManager.GetVariationConfig.chestRollAdjustValue, Space.Self);
+                    _chestObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.chestPitchAdjustValue, _vectorVariationManager.GetVariationConfig.chestYawAdjustValue, _vectorVariationManager.GetVariationConfig.chestRollAdjustValue, Space.Self);
                 
                     _leftUpperArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_UPPER_ARM];
                     _rightUpperArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_UPPER_ARM];
@@ -199,13 +199,45 @@ namespace EthanLin.AssignDataHelper
                 }
                 else if (_alwaysFaceRole.GetSceneIndex == 2)
                 {
+                    // _chestObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.CHEST];
+                    // // 最後微調
+                    // // _chestObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.chestPitchAdjustValue, 0f, _vectorVariationManager.GetVariationConfig.chestRollAdjustValue, Space.Self);
+                    //
+                    // _leftUpperArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_UPPER_ARM];
+                    // _rightUpperArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_UPPER_ARM];
+                    //
+                    // _leftForeArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_FOREARM];
+                    // _rightForeArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_FOREARM];
+                    //
+                    // _pelvisObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.PELVIS];
+                    // // 最後微調
+                    // // _pelvisObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.pelvisPitchAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisYawAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisRollAdjustValue, Space.Self);
+                    //
+                    // _leftThighObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];
+                    // _rightThighObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_THIGH];
+                    //
+                    // _leftCalfObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_CALF];
+                    // _rightCalfObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_CALF];
+                    
                     _chestObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.CHEST];
+                    // 最後微調
+                    _chestObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.chestPitchAdjustValue, 0f, _vectorVariationManager.GetVariationConfig.chestRollAdjustValue, Space.Self);
                     
                     _leftUpperArmObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_UPPER_ARM];
                     _rightUpperArmObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_UPPER_ARM];
                     
                     _leftForeArmObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_FOREARM];
                     _rightForeArmObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_FOREARM];
+                    
+                    _pelvisObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.PELVIS];
+                    // 最後微調
+                    _pelvisObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.pelvisPitchAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisYawAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisRollAdjustValue, Space.Self);
+                    
+                    _leftThighObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];
+                    _rightThighObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_THIGH];
+                    
+                    _leftCalfObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_CALF];
+                    _rightCalfObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_CALF];
                 }
             }
             else

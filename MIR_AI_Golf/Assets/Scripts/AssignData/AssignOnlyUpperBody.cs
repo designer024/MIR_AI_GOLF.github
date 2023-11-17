@@ -24,7 +24,18 @@ namespace EthanLin.AssignDataHelper
         [SerializeField] private Material[] _fullBodyMaterials;
         [SerializeField] private Material[] _upperbodyMaterials;
 
-        [SerializeField] private GameObject LeonardShoes, LeonardPants;
+        #region For Leonard
+
+        [Header("Leonard Body")] [SerializeField] private SkinnedMeshRenderer _skinnedMeshRendererBody;
+        [Header("Leonard Collar")] [SerializeField] private SkinnedMeshRenderer _skinnedMeshRendererCollar;
+        [Header("Leonard Sweater")] [SerializeField] private SkinnedMeshRenderer _skinnedMeshRendererSweater;
+        
+        [Header("Leonard Pants")] [SerializeField] private SkinnedMeshRenderer _skinnedMeshRendererPants;
+        [Header("Leonard Shoes")] [SerializeField] private SkinnedMeshRenderer _skinnedMeshRendererShoes;
+
+        // [SerializeField] private GameObject LeonardShoes, LeonardPants;
+        
+        #endregion
 
         private void Start()
         {
@@ -69,11 +80,26 @@ namespace EthanLin.AssignDataHelper
             // Leonard
             else if (_roleId == 3)
             {
-                var materials = _skinnedMeshRenderer.materials;
-                materials[0] = aIsOnlyUpper ? _upperbodyMaterials[0] : _fullBodyMaterials[0];
-                _skinnedMeshRenderer.materials = materials;
-                LeonardShoes.SetActive(!aIsOnlyUpper);
-                LeonardPants.SetActive(!aIsOnlyUpper);
+                var materialsBody = _skinnedMeshRendererBody.materials;
+                var materialsCollar = _skinnedMeshRendererCollar.materials;
+                var materialsSweater = _skinnedMeshRendererSweater.materials;
+                var materialsPants = _skinnedMeshRendererPants.materials;
+                var materialsShoes = _skinnedMeshRendererShoes.materials;
+                
+                materialsBody[0] = aIsOnlyUpper ? _upperbodyMaterials[0] : _fullBodyMaterials[0];
+                materialsCollar[0] = aIsOnlyUpper ? _upperbodyMaterials[0] : _fullBodyMaterials[0];
+                materialsSweater[0] = aIsOnlyUpper ? _upperbodyMaterials[0] : _fullBodyMaterials[0];
+                materialsPants[0] = aIsOnlyUpper ? _upperbodyMaterials[1] : _fullBodyMaterials[0];
+                materialsShoes[0] = aIsOnlyUpper ? _upperbodyMaterials[1] : _fullBodyMaterials[0];
+
+                _skinnedMeshRendererBody.materials = materialsBody;
+                _skinnedMeshRendererCollar.materials = materialsCollar;
+                _skinnedMeshRendererSweater.materials = materialsSweater;
+                _skinnedMeshRendererPants.materials = materialsPants;
+                _skinnedMeshRendererShoes.materials = materialsShoes;
+
+                // LeonardShoes.SetActive(!aIsOnlyUpper);
+                // LeonardPants.SetActive(!aIsOnlyUpper);
                 // Debug.Log($"{AllConfigs.DEBUG_TAG}, Leonard: {aIsOnlyUpper}");
             }
         }

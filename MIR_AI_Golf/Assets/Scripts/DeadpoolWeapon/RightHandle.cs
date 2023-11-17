@@ -55,7 +55,7 @@ namespace EthanLin
     
         private void OnTriggerExit(Collider aOther)
         {
-            if (aOther.tag == "FireTrigger") //停止射擊
+            if (aOther.tag.Equals("FireTrigger")) //停止射擊
             {
                 _particleSystem.Stop();
                 _audioSource.Stop();

@@ -20,7 +20,8 @@ namespace EthanLin
         
         [SerializeField] private BluetoothManager _bluetoothManager;
         [SerializeField] private VariationConfig _variationConfig;
-        [SerializeField] private BallBallConfigHelperV2 _ballBallConfigHelperV2;
+        [Header("目前只用在Normal場景")] [SerializeField] private BallBallConfigHelperV2 _ballBallConfigHelperV2;
+        [SerializeField] private ChestAndPelvisFinalAdjustHelper _chestAndPelvisFinalAdjustHelper;
         
         /// <summary>
         /// BGM
@@ -55,11 +56,17 @@ namespace EthanLin
         /// PIP RawImage
         /// </summary>
         [Header("PIP RawImage AR場景用的")] [SerializeField] private GameObject _PipRawImage;
+        /// <summary>
+        /// PIP 按鈕文字 
+        /// </summary>
+        [Header("PIP 按鈕文字 AR場景用的")] [SerializeField] private Text _pipButtonLabel;
         
         /// <summary>
         /// Role Mixed
         /// </summary>
         [Header("Role Mixed Normal場景用的")] [SerializeField] private GameObject _roleMixedObject;
+
+        [Header("胸與腰最後調整")] [SerializeField] private GameObject _chestAndPelvisFinalAdjustPanel;
 
         #region Toggles
 
@@ -67,7 +74,9 @@ namespace EthanLin
         [Header("按鈕音效")] [SerializeField] private Toggle _buttonClickToggle;
         [Header("只有上半身")] [SerializeField] private Toggle _onlyUpperBodyToggle;
         [Header("使用Variation")] [SerializeField] private Toggle _usingVariationToggle;
+        
         [Header("使用球球")] [SerializeField] private Toggle _usingBallBallToggle;
+        [Header("胸與腰最後調整")] [SerializeField] private Toggle _chestAndPelvisFinalAdjustToggle;
 
         #endregion
         
@@ -87,8 +96,8 @@ namespace EthanLin
             {
                 if (CurrentPageIs.CURRENT_PAGE == CurrentPageIs.MAIN_PAGE)
                 {
-                    InitOptionsPageUi();
-                    // OpenDialoguePageDirectly();
+                    // InitOptionsPageUi();
+                    OpenDialoguePageDirectly();
                 }
                 else if (CurrentPageIs.CURRENT_PAGE == CurrentPageIs.OPTIONS_PAGE)
                 {
@@ -111,6 +120,9 @@ namespace EthanLin
         private void InitOptionsPageUi()
         {
             CurrentPageIs.CURRENT_PAGE = CurrentPageIs.MAIN_PAGE;
+
+            _chestAndPelvisFinalAdjustToggle.isOn = false;
+            _chestAndPelvisFinalAdjustPanel.SetActive(_chestAndPelvisFinalAdjustToggle.isOn);
             
             _isOptionsPageOn = false;
             _optionsPage.transform.localScale = Vector3.zero;
@@ -123,6 +135,7 @@ namespace EthanLin
             if (_sceneIndex == 2)
             {
                 _PipRawImage.SetActive(false);
+                _pipButtonLabel.color = Color.white;
             }
         }
         
@@ -158,6 +171,10 @@ namespace EthanLin
                 if (_sceneIndex == 1)
                 {
                     _usingBallBallToggle.isOn = _ballBallConfigHelperV2.GetIsUsingBallBall;
+                }
+                else if (_sceneIndex == 2)
+                {
+                    _pipButtonLabel.color = _PipRawImage.activeInHierarchy ? Color.yellow : Color.white;
                 }
             });
         }
@@ -212,11 +229,15 @@ namespace EthanLin
             SceneManager.LoadScene(0);
         }
 
-        
+
         /// <summary>
         /// AR場景使用 PIP on / off
         /// </summary>
-        public void TurnOnOffPip() => _PipRawImage.SetActive(!_PipRawImage.activeInHierarchy);
+        public void TurnOnOffPip()
+        {
+            _PipRawImage.SetActive(!_PipRawImage.activeInHierarchy);
+            _pipButtonLabel.color = _PipRawImage.activeInHierarchy ? Color.yellow : Color.white;
+        }
         
         public void GotoNormalScene() => SceneManager.LoadScene(1);
         public void GotoAR_Scene() => SceneManager.LoadScene(2);
@@ -280,6 +301,16 @@ namespace EthanLin
             {
                 Debug.LogError($"{AllConfigs.DEBUG_TAG}, AssignDataToRoleHelper is null!");
             }
+        }
+
+        public void SetChestAndPelvisFinalAdjustPanelOnOff(bool aIsOn)
+        {
+            _chestAndPelvisFinalAdjustPanel.SetActive(aIsOn);
+            if (aIsOn)
+            {
+                _chestAndPelvisFinalAdjustHelper.GetValues();
+            }
+            CloseOptionsPage();
         }
 
         #endregion

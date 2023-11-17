@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using EthanLin.Config;
+using EthanLin.Variation;
 
 namespace EthanLin.AssignDataHelper
 {
     public class RawDataAssignManager : MonoBehaviour
     {
         [SerializeField] private DataStringToQuaternionHelper _dataStringToQuaternionHelper;
+        // [SerializeField] private VariationConfig _variationConfig;
         
         #region 各個關節物件
 
@@ -173,6 +175,13 @@ namespace EthanLin.AssignDataHelper
                 
                 #region 下半身
 
+                /*_pelvisObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.PELVIS];
+                
+                _leftThighObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];
+                _rightThighObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.RIGHT_THIGH];
+                
+                _leftCalfObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.LEFT_CALF];
+                _rightCalfObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.RIGHT_CALF];*/
                 _pelvisObject.transform.rotation = _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.PELVIS];
                 
                 _leftThighObject.transform.rotation = _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];

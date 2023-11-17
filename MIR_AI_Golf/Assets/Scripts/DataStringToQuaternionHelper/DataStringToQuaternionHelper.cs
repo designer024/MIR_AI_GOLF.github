@@ -51,13 +51,13 @@ namespace EthanLin.AssignDataHelper
             if (aDataString.Contains("#"))
             {
                 int upperId;
-                // int downId;
+                int downId;
                 Quaternion tempUpperQuaternion;
-                // Quaternion tempDownQuaternion;
+                Quaternion tempDownQuaternion;
 
                 string[] stringArray = aDataString.Split('#');
-                if (stringArray.Length == 5)
-                // if (stringArray.Length == 10)
+                // if (stringArray.Length == 5)
+                if (stringArray.Length == 10)
                 {
                     // Debug.Log($"EthanLinBluetoothDataLib {aDataString}");
 
@@ -68,7 +68,20 @@ namespace EthanLin.AssignDataHelper
                     tempUpperQuaternion.w = float.Parse(stringArray[4]);
 
                     _rawDataQuaternionDictionary[upperId] = tempUpperQuaternion;
-
+                    
+                    // _rawDataQuaternionDictionary[int.Parse(stringArray[0])] = new Quaternion(float.Parse(stringArray[1]), float.Parse(stringArray[2]), float.Parse(stringArray[3]), float.Parse(stringArray[4]));
+                    
+                    downId = int.Parse(stringArray[5]);
+                    tempDownQuaternion.x = float.Parse(stringArray[6]);
+                    tempDownQuaternion.y = float.Parse(stringArray[7]);
+                    tempDownQuaternion.z = float.Parse(stringArray[8]);
+                    tempDownQuaternion.w = float.Parse(stringArray[9]);
+                    
+                    _rawDataQuaternionDictionary[downId] = tempDownQuaternion;
+                    // _rawDataQuaternionDictionary[int.Parse(stringArray[5])] = new Quaternion(float.Parse(stringArray[6]), float.Parse(stringArray[7]), float.Parse(stringArray[8]), float.Parse(stringArray[9]));
+                    
+                    // Debug.Log($"EthanLinBluetoothDataLib 上半身id: {int.Parse(stringArray[0])},  下半身id: {int.Parse(stringArray[5])}");
+                    
                     if (upperId == AllPartNameIndex.CHEST)
                     {
                         // Normal模式下
@@ -78,18 +91,6 @@ namespace EthanLin.AssignDataHelper
                         }
                     }
                     
-                    // _rawDataQuaternionDictionary[int.Parse(stringArray[0])] = new Quaternion(float.Parse(stringArray[1]), float.Parse(stringArray[2]), float.Parse(stringArray[3]), float.Parse(stringArray[4]));
-                    
-                    // downId = int.Parse(stringArray[5]);
-                    // tempDownQuaternion.x = float.Parse(stringArray[6]);
-                    // tempDownQuaternion.y = float.Parse(stringArray[7]);
-                    // tempDownQuaternion.z = float.Parse(stringArray[8]);
-                    // tempDownQuaternion.w = float.Parse(stringArray[9]);
-                    //
-                    // _rawDataQuaternionDictionary[downId] = tempDownQuaternion;
-                    // _rawDataQuaternionDictionary[int.Parse(stringArray[5])] = new Quaternion(float.Parse(stringArray[6]), float.Parse(stringArray[7]), float.Parse(stringArray[8]), float.Parse(stringArray[9]));
-                    
-                    // Debug.Log($"EthanLinBluetoothDataLib 上半身id: {int.Parse(stringArray[0])},  下半身id: {int.Parse(stringArray[5])}");
                     GetBluetoothDataReceived = true;
                 }
                 else
