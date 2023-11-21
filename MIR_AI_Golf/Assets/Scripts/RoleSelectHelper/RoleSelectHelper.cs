@@ -19,6 +19,9 @@ namespace EthanLin
         [Header("Role Mixed Normal場景用的")] [SerializeField] private GameObject _roleMixedObject;
         
         [Tooltip("0: Miku,\n1: 死侍,\n2: 失敗的人\n3: Leonard")]
+        [SerializeField] private GameObject[] _roleRawData;
+        
+        [Tooltip("0: Miku,\n1: 死侍,\n2: 失敗的人\n3: Leonard")]
         [SerializeField] private GameObject[] _rolePrefabs;
         
         [Tooltip("0: Miku,\n1: 死侍,\n2: 失敗的人\n3: Leonard")]
@@ -45,11 +48,13 @@ namespace EthanLin
             _selectRoleButtons[_currentSelectedIndex].image.color = new Color(0f, 0.8f, 1f, 1f);
             GameObject curRole = Instantiate(_rolePrefabs[_currentSelectedIndex]);
             // 設定位置
-            curRole.transform.position = _ballBallConfigHelperV2.GetIsUsingBallBall ? new Vector3(100f, 0f, 0f) : Vector3.zero;
-            _roleMixedObject.transform.position = _ballBallConfigHelperV2.GetIsUsingBallBall ? Vector3.zero : new Vector3(100f, 0f, 0f);
+            curRole.transform.position = _ballBallConfigHelperV2.GetIsUsingBallBall ? new Vector3(100f, 0f, 0f) : new Vector3(0.4f, 0f, 0f);
+            _roleMixedObject.transform.position = _ballBallConfigHelperV2.GetIsUsingBallBall ? new Vector3(0.4f, 0f, 0f) : new Vector3(100f, 0f, 0f);
             
             _ballBallV2Manager.SetAssignDataToRoleHelper(curRole);
 
+            _roleRawData[aRoleIndex].SetActive(true);
+            
             _roleMixedObject.transform.GetChild(_currentSelectedIndex).transform.gameObject.SetActive(true);
             MakeTwoHandsCloserV2Manager makeTwoHandsCloserV2Manager = _roleMixedObject.transform.GetChild(_currentSelectedIndex).GetComponent<MakeTwoHandsCloserV2Manager>();
             if (makeTwoHandsCloserV2Manager != null)
@@ -71,6 +76,11 @@ namespace EthanLin
                 {
                     Destroy(role);
                 }
+            }
+            
+            foreach (GameObject role in _roleRawData)
+            {
+                role.SetActive(false);
             }
         }
 

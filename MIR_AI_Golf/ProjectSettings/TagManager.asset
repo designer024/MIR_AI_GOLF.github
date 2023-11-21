@@ -16,6 +16,7 @@ TagManager:
   - RoleSelectHelper
   - RoleMixed
   - AlwaysFaceRole
+  - DragTheMixed
   layers:
   - Default
   - TransparentFX

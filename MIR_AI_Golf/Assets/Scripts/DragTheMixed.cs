@@ -14,10 +14,12 @@ namespace EthanLin
         private Vector3 _prevPos = Vector3.zero;
         private Vector3 _posDelta = Vector3.zero;
 
-        private void Start() => CanRotateRole = true;
+        // private void Start() => CanRotateRole = false;
 	
         private void Update ()
         {
+            // Debug.Log($"{AllConfigs.DEBUG_TAG}, CanRotateRole: {CanRotateRole}");
+            
             if (CanRotateRole)
             {
                 if (Input.GetMouseButton(0))
@@ -40,7 +42,7 @@ namespace EthanLin
             }
             else
             {
-                transform.forward = transform.parent.GetChild(AllConfigs.CURRENT_SELECTED_ROLE_INDEX).GetComponent<AssignDataToRoleHelper>().GetChestObject.transform.right;
+                // transform.forward = transform.parent.GetChild(AllConfigs.CURRENT_SELECTED_ROLE_INDEX).GetComponent<AssignDataToRoleHelper>().GetChestObject.transform.right;
             }
         }
     }

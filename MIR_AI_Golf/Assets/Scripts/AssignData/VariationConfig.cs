@@ -62,30 +62,30 @@ namespace EthanLin.Variation
         public void SetOnlyUpperBody(bool aOnlyUpperBody) => _onlyUpperBody = aOnlyUpperBody;
         
         /// <summary>
-        /// 胸 Pitch, -15 ~ 15
+        /// 胸 Pitch, -20 ~ 20
         /// </summary>
-        [Header("胸 Pitch, -15 ~ 15")] [Range(-15f, 15f)] public float chestPitchAdjustValue;
+        [Header("胸 Pitch, -20 ~ 20")] [Range(-20f, 20f)] public float chestPitchAdjustValue;
         /// <summary>
-        /// 胸 Yaw, -15 ~ 15
+        /// 胸 Yaw, -20 ~ 20
         /// </summary>
-        [Header("胸 Yaw, -15 ~ 15")] [Range(-15f, 15f)] public float chestYawAdjustValue;
+        [Header("胸 Yaw, -20 ~ 20")] [Range(-20f, 20f)] public float chestYawAdjustValue;
         /// <summary>
-        /// 胸 Roll, -15 ~ 15
+        /// 胸 Roll, -20 ~ 20
         /// </summary>
-        [Header("胸 Roll, -15 ~ 15")] [Range(-15f, 15f)] public float chestRollAdjustValue;
+        [Header("胸 Roll, -20 ~ 20")] [Range(-20f, 20f)] public float chestRollAdjustValue;
         
         /// <summary>
-        /// 臀 Pitch, -15 ~ 15
+        /// 臀 Pitch, -20 ~ 20
         /// </summary>
-        [Header("臀 Pitch, -15 ~ 15")] [Range(-15f, 15f)] public float pelvisPitchAdjustValue;
+        [Header("臀 Pitch, -20 ~ 20")] [Range(-20f, 20f)] public float pelvisPitchAdjustValue;
         /// <summary>
-        /// 臀 Yaw, -15 ~ 15
+        /// 臀 Yaw, -20 ~ 20
         /// </summary>
-        [Header("臀 Yaw, -15 ~ 15")] [Range(-15f, 15f)] public float pelvisYawAdjustValue;
+        [Header("臀 Yaw, -20 ~ 20")] [Range(-20f, 20f)] public float pelvisYawAdjustValue;
         /// <summary>
-        /// 臀 Roll, -15 ~ 15
+        /// 臀 Roll, -20 ~ 20
         /// </summary>
-        [Header("臀 Roll, -15 ~ 15")] [Range(-15f, 15f)] public float pelvisRollAdjustValue;
+        [Header("臀 Roll, -20 ~ 20")] [Range(-20f, 20f)] public float pelvisRollAdjustValue;
 
         /// <summary>
         /// 各部位Variation設置List

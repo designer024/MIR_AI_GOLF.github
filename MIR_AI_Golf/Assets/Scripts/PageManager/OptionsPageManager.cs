@@ -55,7 +55,7 @@ namespace EthanLin
         /// <summary>
         /// PIP RawImage
         /// </summary>
-        [Header("PIP RawImage AR場景用的")] [SerializeField] private GameObject _PipRawImage;
+        [Header("PIP RawImage AR場景用的")] [SerializeField] private GameObject _PipRawImage, _PipRawImage_Rawdata, _dragMixedImage;
         /// <summary>
         /// PIP 按鈕文字 
         /// </summary>
@@ -135,6 +135,8 @@ namespace EthanLin
             if (_sceneIndex == 2)
             {
                 _PipRawImage.SetActive(false);
+                _PipRawImage_Rawdata.SetActive(false);
+                _dragMixedImage.SetActive(false);
                 _pipButtonLabel.color = Color.white;
             }
         }
@@ -236,6 +238,8 @@ namespace EthanLin
         public void TurnOnOffPip()
         {
             _PipRawImage.SetActive(!_PipRawImage.activeInHierarchy);
+            _PipRawImage_Rawdata.SetActive(_PipRawImage.activeInHierarchy);
+            _dragMixedImage.SetActive(_PipRawImage.activeInHierarchy);
             _pipButtonLabel.color = _PipRawImage.activeInHierarchy ? Color.yellow : Color.white;
         }
         

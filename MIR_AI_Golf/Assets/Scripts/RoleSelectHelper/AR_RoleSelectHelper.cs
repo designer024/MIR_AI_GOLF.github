@@ -9,6 +9,9 @@ namespace EthanLin
 {
     public class AR_RoleSelectHelper : MonoBehaviour
     {
+        [Tooltip("0: Miku,\n1: 死侍,\n2: 失敗的人\n3: Leonard")]
+        [SerializeField] private GameObject[] _roleRawData;
+        
         /// <summary>
         /// 0: Miku,
         /// 1: 死侍,
@@ -43,6 +46,12 @@ namespace EthanLin
 
             AllConfigs.CURRENT_SELECTED_ROLE_INDEX = _curSelectedIndex;
             _selectRoleButtons[_curSelectedIndex].GetComponent<Image>().color = new Color(0f, 0.55f, 1f, 1f);
+            
+            foreach (GameObject role in _roleRawData)
+            {
+                role.SetActive(false);
+            }
+            _roleRawData[_curSelectedIndex].SetActive(true);
         }
         
         public void SelectRole(int aIndex)
@@ -73,6 +82,8 @@ namespace EthanLin
             {
                 spawnedObject.transform.GetChild(_curSelectedIndex).transform.gameObject.SetActive(true);
             }
+            
+            _roleRawData[aIndex].SetActive(true);
         }
 
         /// <summary>
@@ -99,6 +110,11 @@ namespace EthanLin
                 {
                     spawnedObject.transform.GetChild(i).transform.gameObject.SetActive(false);
                 }
+            }
+            
+            foreach (GameObject role in _roleRawData)
+            {
+                role.SetActive(false);
             }
         }
         

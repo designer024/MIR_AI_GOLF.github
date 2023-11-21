@@ -4122,7 +4122,7 @@ GameObject:
   - component: {fileID: 2672977420500621148}
   m_Layer: 0
   m_Name: RotateCenter
-  m_TagString: Untagged
+  m_TagString: DragTheMixed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

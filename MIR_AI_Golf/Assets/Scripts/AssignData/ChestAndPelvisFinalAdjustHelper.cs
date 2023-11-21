@@ -48,13 +48,13 @@ namespace EthanLin.AssignDataHelper
         {
             float value = _variationConfig.chestPitchAdjustValue;
             value += aIncreaseDecrease * VALUE_GAP;
-            if (value > 15f)
+            if (value > 20f)
             {
-                _variationConfig.chestPitchAdjustValue = 15f;
+                _variationConfig.chestPitchAdjustValue = 20f;
             }
-            else if (value < -15f)
+            else if (value < -20f)
             {
-                _variationConfig.chestPitchAdjustValue = -15f;
+                _variationConfig.chestPitchAdjustValue = -20f;
             }
             else
             {
@@ -74,13 +74,13 @@ namespace EthanLin.AssignDataHelper
         {
             float value = _variationConfig.chestYawAdjustValue;
             value += aIncreaseDecrease * VALUE_GAP;
-            if (value > 15f)
+            if (value > 20f)
             {
-                _variationConfig.chestYawAdjustValue = 15f;
+                _variationConfig.chestYawAdjustValue = 20f;
             }
-            else if (value < -15f)
+            else if (value < -20f)
             {
-                _variationConfig.chestYawAdjustValue = -15f;
+                _variationConfig.chestYawAdjustValue = -20f;
             }
             else
             {
@@ -100,13 +100,13 @@ namespace EthanLin.AssignDataHelper
         {
             float value = _variationConfig.chestRollAdjustValue;
             value += aIncreaseDecrease * VALUE_GAP;
-            if (value > 15f)
+            if (value > 20f)
             {
-                _variationConfig.chestRollAdjustValue = 15f;
+                _variationConfig.chestRollAdjustValue = 20f;
             }
-            else if (value < -15f)
+            else if (value < -20f)
             {
-                _variationConfig.chestRollAdjustValue = -15f;
+                _variationConfig.chestRollAdjustValue = -20f;
             }
             else
             {
@@ -130,13 +130,13 @@ namespace EthanLin.AssignDataHelper
         {
             float value = _variationConfig.pelvisPitchAdjustValue;
             value += aIncreaseDecrease * VALUE_GAP;
-            if (value > 15f)
+            if (value > 20f)
             {
-                _variationConfig.pelvisPitchAdjustValue = 15f;
+                _variationConfig.pelvisPitchAdjustValue = 20f;
             }
-            else if (value < -15f)
+            else if (value < -20f)
             {
-                _variationConfig.pelvisPitchAdjustValue = -15f;
+                _variationConfig.pelvisPitchAdjustValue = -20f;
             }
             else
             {
@@ -156,13 +156,13 @@ namespace EthanLin.AssignDataHelper
         {
             float value = _variationConfig.pelvisYawAdjustValue;
             value += aIncreaseDecrease * VALUE_GAP;
-            if (value > 15f)
+            if (value > 20f)
             {
-                _variationConfig.pelvisYawAdjustValue = 15f;
+                _variationConfig.pelvisYawAdjustValue = 20f;
             }
-            else if (value < -15f)
+            else if (value < -20f)
             {
-                _variationConfig.pelvisYawAdjustValue = -15f;
+                _variationConfig.pelvisYawAdjustValue = -20f;
             }
             else
             {
@@ -182,11 +182,11 @@ namespace EthanLin.AssignDataHelper
         {
             float value = _variationConfig.pelvisRollAdjustValue;
             value += aIncreaseDecrease * VALUE_GAP;
-            if (value > 15f)
+            if (value > 20f)
             {
                 _variationConfig.pelvisRollAdjustValue = 15f;
             }
-            else if (value < -15f)
+            else if (value < -20f)
             {
                 _variationConfig.pelvisRollAdjustValue = -15f;
             }
