@@ -13,6 +13,10 @@ namespace EthanLin.AssignDataHelper
         [SerializeField] private VectorVariationManager _vectorVariationManager;
         [SerializeField] private AlwaysFaceRole _alwaysFaceRole;
         
+        private RoleSelectHelper _roleSelectHelper;
+        
+        private bool _isUsingBallBall;
+        
         #region 各個關節物件
 
         /// <summary>
@@ -158,8 +162,15 @@ namespace EthanLin.AssignDataHelper
 
         #endregion
         
+        /// <summary>
+        /// 胸當下面向的方向
+        /// </summary>
+        private Vector3 _chestForwardVector;
+        
         private void Start()
         {
+            _isUsingBallBall = false;
+            
             if (_vectorVariationManager == null)
             {
                 _vectorVariationManager = GameObject.FindWithTag("VectorVariationManager").GetComponent<VectorVariationManager>();
@@ -169,17 +180,30 @@ namespace EthanLin.AssignDataHelper
             {
                 _alwaysFaceRole = GameObject.FindWithTag("AlwaysFaceRole").GetComponent<AlwaysFaceRole>();
             }
+
+            if (_alwaysFaceRole.GetSceneIndex == 1)
+            {
+                _roleSelectHelper = GameObject.FindWithTag("RoleSelectHelper").GetComponent<RoleSelectHelper>();
+            }
         }
 
         private void Update()
         {
+            if (_alwaysFaceRole.GetSceneIndex == 1)
+            {
+                this.gameObject.transform.position = _isUsingBallBall ? new Vector3(100f, 0f, 0f) : _roleSelectHelper.GetColorfulRoleStandingPoint.transform.position;
+            }
+            
             if (_vectorVariationManager != null && _alwaysFaceRole != null)
             {
+                // Normal 場景
                 if (_alwaysFaceRole.GetSceneIndex == 1)
                 {
                     _chestObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.CHEST];
                     // 最後微調
                     _chestObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.chestPitchAdjustValue, _vectorVariationManager.GetVariationConfig.chestYawAdjustValue, _vectorVariationManager.GetVariationConfig.chestRollAdjustValue, Space.Self);
+                    // 胸當下面向的方向
+                    _chestForwardVector = Vector3.ProjectOnPlane(_chestObject.transform.forward, Vector3.up);
                 
                     _leftUpperArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_UPPER_ARM];
                     _rightUpperArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_UPPER_ARM];
@@ -187,16 +211,36 @@ namespace EthanLin.AssignDataHelper
                     _leftForeArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_FOREARM];
                     _rightForeArmObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_FOREARM];
 
-                    _pelvisObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.PELVIS];
-                    // 最後微調
-                    _pelvisObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.pelvisPitchAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisYawAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisRollAdjustValue, Space.Self);
+                    #region 下半身
+
+                    // 只有上半身
+                    if (_vectorVariationManager.GetVariationConfig.GetOnlyUpperBody)
+                    {
+                        _pelvisObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                        
+                        _leftThighObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                        _rightThighObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                
+                        _leftCalfObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                        _rightCalfObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                    }
+                    // 全身的
+                    else
+                    {
+                        _pelvisObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.PELVIS];
+                        // 最後微調
+                        _pelvisObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.pelvisPitchAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisYawAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisRollAdjustValue, Space.Self);
                     
-                    _leftThighObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];
-                    _rightThighObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_THIGH];
+                        _leftThighObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];
+                        _rightThighObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_THIGH];
                     
-                    _leftCalfObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_CALF];
-                    _rightCalfObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_CALF];
+                        _leftCalfObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_CALF];
+                        _rightCalfObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_CALF];
+                    }
+
+                    #endregion
                 }
+                // AR 場景
                 else if (_alwaysFaceRole.GetSceneIndex == 2)
                 {
                     // _chestObject.transform.rotation = _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.CHEST];
@@ -221,7 +265,9 @@ namespace EthanLin.AssignDataHelper
                     
                     _chestObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.CHEST];
                     // 最後微調
-                    _chestObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.chestPitchAdjustValue, 0f, _vectorVariationManager.GetVariationConfig.chestRollAdjustValue, Space.Self);
+                    _chestObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.chestPitchAdjustValue, _vectorVariationManager.GetVariationConfig.chestYawAdjustValue, _vectorVariationManager.GetVariationConfig.chestRollAdjustValue, Space.Self);
+                    // 胸當下面向的方向
+                    _chestForwardVector = Vector3.ProjectOnPlane(_chestObject.transform.forward, Vector3.up);
                     
                     _leftUpperArmObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_UPPER_ARM];
                     _rightUpperArmObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_UPPER_ARM];
@@ -229,15 +275,34 @@ namespace EthanLin.AssignDataHelper
                     _leftForeArmObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_FOREARM];
                     _rightForeArmObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_FOREARM];
                     
-                    _pelvisObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.PELVIS];
-                    // 最後微調
-                    _pelvisObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.pelvisPitchAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisYawAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisRollAdjustValue, Space.Self);
+                    #region 下半身
+
+                    // 只有上半身
+                    if (_vectorVariationManager.GetVariationConfig.GetOnlyUpperBody)
+                    {
+                        _pelvisObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                        
+                        _leftThighObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                        _rightThighObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                
+                        _leftCalfObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                        _rightCalfObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                    }
+                    // 全身的
+                    else
+                    {
+                        _pelvisObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.PELVIS];
+                        // 最後微調
+                        _pelvisObject.transform.Rotate(_vectorVariationManager.GetVariationConfig.pelvisPitchAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisYawAdjustValue, _vectorVariationManager.GetVariationConfig.pelvisRollAdjustValue, Space.Self);
                     
-                    _leftThighObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];
-                    _rightThighObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_THIGH];
+                        _leftThighObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];
+                        _rightThighObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_THIGH];
                     
-                    _leftCalfObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_CALF];
-                    _rightCalfObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_CALF];
+                        _leftCalfObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.LEFT_CALF];
+                        _rightCalfObject.transform.rotation = Quaternion.AngleAxis(_alwaysFaceRole.Different, Vector3.up) * _vectorVariationManager.GetVariationQuaternionDictionary[AllPartNameIndex.RIGHT_CALF];
+                    }
+
+                    #endregion
                 }
             }
             else
@@ -251,15 +316,15 @@ namespace EthanLin.AssignDataHelper
         /// </summary>
         public void ToldMeToGoFarAway()
         {
-            this.gameObject.transform.position = new Vector3(100f, 0f, 0f);
+            _isUsingBallBall = true;
         }
         
         /// <summary>
-        /// 如果使用球球，我就要滾遠一點
+        /// 回到螢幕
         /// </summary>
         public void ToldMeToBack()
         {
-            this.gameObject.transform.position = Vector3.zero;
+            _isUsingBallBall = false;
         }
     }
 }

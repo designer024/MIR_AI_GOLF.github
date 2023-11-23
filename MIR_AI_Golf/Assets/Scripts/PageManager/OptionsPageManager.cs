@@ -23,6 +23,8 @@ namespace EthanLin
         [Header("目前只用在Normal場景")] [SerializeField] private BallBallConfigHelperV2 _ballBallConfigHelperV2;
         [SerializeField] private ChestAndPelvisFinalAdjustHelper _chestAndPelvisFinalAdjustHelper;
         
+        [Header("目前只用在Normal場景")] [SerializeField] private RoleSelectHelper _roleSelectHelper;
+        
         /// <summary>
         /// BGM
         /// </summary>
@@ -298,7 +300,7 @@ namespace EthanLin
                 else
                 {
                     assignDataToRoleHelper.ToldMeToGoFarAway();
-                    _roleMixedObject.transform.position = Vector3.zero;
+                    _roleMixedObject.transform.position = _roleSelectHelper.GetColorfulRoleStandingPoint.transform.position;
                 }
             }
             else

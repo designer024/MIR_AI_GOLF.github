@@ -1674,45 +1674,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179907028}
   m_CullTransparentMesh: 1
---- !u!21 &196698792
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _WidthHeightRadius: {r: 600, g: 10, b: 12, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &201972921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,7 +1798,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1732310188}
         m_TargetAssemblyTypeName: EthanLin.AssignDataHelper.ChestAndPelvisFinalAdjustHelper,
           Assembly-CSharp
-        m_MethodName: AdjustChestRoll
+        m_MethodName: SliderAdjustChestRoll
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3916,7 +3877,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1732310188}
         m_TargetAssemblyTypeName: EthanLin.AssignDataHelper.ChestAndPelvisFinalAdjustHelper,
           Assembly-CSharp
-        m_MethodName: AdjustPelvisRoll
+        m_MethodName: SliderAdjustPelvisRoll
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5160,6 +5121,45 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!21 &695598986
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/RoundedCorners
+  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _WidthHeightRadius: {r: 600, g: 12.5, b: 12, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &721396929
 GameObject:
   m_ObjectHideFlags: 0
@@ -7819,7 +7819,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1732310188}
         m_TargetAssemblyTypeName: EthanLin.AssignDataHelper.ChestAndPelvisFinalAdjustHelper,
           Assembly-CSharp
-        m_MethodName: AdjustChestPitch
+        m_MethodName: SliderAdjustChestPitch
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8064,7 +8064,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1732310188}
         m_TargetAssemblyTypeName: EthanLin.AssignDataHelper.ChestAndPelvisFinalAdjustHelper,
           Assembly-CSharp
-        m_MethodName: AdjustPelvisYaw
+        m_MethodName: SliderAdjustPelvisYaw
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11643,45 +11643,6 @@ MonoBehaviour:
   _variationConfig: {fileID: 1387949863}
   _calibrateHelperV2: {fileID: 17379265}
   _stickHelper: {fileID: 1630625698}
---- !u!21 &1390898074
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: UI/RoundedCorners/RoundedCorners
-  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _ColorMask: 15
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
-    m_Colors:
-    - _WidthHeightRadius: {r: 600, g: 12.5, b: 12, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &1396272018
 GameObject:
   m_ObjectHideFlags: 0
@@ -12159,7 +12120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 196698792}
+  m_Material: {fileID: 1738348899}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -12505,7 +12466,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1732310188}
         m_TargetAssemblyTypeName: EthanLin.AssignDataHelper.ChestAndPelvisFinalAdjustHelper,
           Assembly-CSharp
-        m_MethodName: AdjustPelvisPitch
+        m_MethodName: SliderAdjustPelvisPitch
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14439,7 +14400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 1390898074}
+  m_Material: {fileID: 695598986}
   m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -14612,6 +14573,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1738348899
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI/RoundedCorners/RoundedCorners
+  m_Shader: {fileID: 4800000, guid: 0bd2ec5d73751e34a814274a454bec41, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _WidthHeightRadius: {r: 600, g: 10, b: 12, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1759855432
 GameObject:
   m_ObjectHideFlags: 0
@@ -14646,6 +14646,7 @@ MonoBehaviour:
   _variationConfig: {fileID: 1387949863}
   _ballBallConfigHelperV2: {fileID: 0}
   _chestAndPelvisFinalAdjustHelper: {fileID: 1732310188}
+  _roleSelectHelper: {fileID: 0}
   _bgmAudioSource: {fileID: 317032130}
   _buttonClickAudioSource: {fileID: 951978009}
   _optionsPage: {fileID: 945071583}
@@ -17007,7 +17008,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1732310188}
         m_TargetAssemblyTypeName: EthanLin.AssignDataHelper.ChestAndPelvisFinalAdjustHelper,
           Assembly-CSharp
-        m_MethodName: AdjustChestYaw
+        m_MethodName: SliderAdjustChestYaw
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19546,7 +19547,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e817c526ada747888aa71f9da79addf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _senenIndex: 2
   _dataStringToQuaternionHelper: {fileID: 1097914820}
+  _rawdataRoleStandingPoint: {fileID: 0}
   _leftUpperArmObject: {fileID: 715469206406907386}
   _rightUpperArmObject: {fileID: 715469206775918581}
   _chestObject: {fileID: 715469206077798567}
@@ -20467,7 +20470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e817c526ada747888aa71f9da79addf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _senenIndex: 2
   _dataStringToQuaternionHelper: {fileID: 0}
+  _rawdataRoleStandingPoint: {fileID: 0}
   _leftUpperArmObject: {fileID: 2802637530616571884}
   _rightUpperArmObject: {fileID: 2802637531687967348}
   _chestObject: {fileID: 2802637530048200615}
@@ -34003,7 +34008,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e817c526ada747888aa71f9da79addf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _senenIndex: 2
   _dataStringToQuaternionHelper: {fileID: 1097914820}
+  _rawdataRoleStandingPoint: {fileID: 0}
   _leftUpperArmObject: {fileID: 3510285262185921460}
   _rightUpperArmObject: {fileID: 3510285264247758831}
   _chestObject: {fileID: 3510285263675115144}
@@ -38627,7 +38634,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e817c526ada747888aa71f9da79addf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _senenIndex: 2
   _dataStringToQuaternionHelper: {fileID: 0}
+  _rawdataRoleStandingPoint: {fileID: 0}
   _leftUpperArmObject: {fileID: 7853890364450724470}
   _rightUpperArmObject: {fileID: 7853890365517271090}
   _chestObject: {fileID: 7853890364265463859}

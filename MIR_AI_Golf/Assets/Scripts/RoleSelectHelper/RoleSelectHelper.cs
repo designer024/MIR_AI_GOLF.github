@@ -14,6 +14,15 @@ namespace EthanLin
         [SerializeField] private BallBallV2Manager _ballBallV2Manager;
         
         /// <summary>
+        /// 彩色角色要站的位置
+        /// </summary>
+        [Header("彩色角色要站的位置")] [SerializeField] private GameObject _colorfulRoleStandingPoint;
+        /// <summary>
+        /// 彩色角色要站的位置
+        /// </summary>
+        public GameObject GetColorfulRoleStandingPoint => _colorfulRoleStandingPoint;
+        
+        /// <summary>
         /// Role Mixed
         /// </summary>
         [Header("Role Mixed Normal場景用的")] [SerializeField] private GameObject _roleMixedObject;
@@ -48,8 +57,8 @@ namespace EthanLin
             _selectRoleButtons[_currentSelectedIndex].image.color = new Color(0f, 0.8f, 1f, 1f);
             GameObject curRole = Instantiate(_rolePrefabs[_currentSelectedIndex]);
             // 設定位置
-            curRole.transform.position = _ballBallConfigHelperV2.GetIsUsingBallBall ? new Vector3(100f, 0f, 0f) : new Vector3(0.4f, 0f, 0f);
-            _roleMixedObject.transform.position = _ballBallConfigHelperV2.GetIsUsingBallBall ? new Vector3(0.4f, 0f, 0f) : new Vector3(100f, 0f, 0f);
+            curRole.transform.position = _ballBallConfigHelperV2.GetIsUsingBallBall ? new Vector3(100f, 0f, 0f) : _colorfulRoleStandingPoint.transform.position;
+            _roleMixedObject.transform.position = _ballBallConfigHelperV2.GetIsUsingBallBall ? _colorfulRoleStandingPoint.transform.position : new Vector3(100f, 0f, 0f);
             
             _ballBallV2Manager.SetAssignDataToRoleHelper(curRole);
 

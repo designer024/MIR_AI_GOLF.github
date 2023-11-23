@@ -64,7 +64,7 @@ namespace EthanLin.AssignDataHelper
             _chestPitchSlider.value = _variationConfig.chestPitchAdjustValue;
         }
 
-        public void AdjustChestPitch(float aValue) => _variationConfig.chestPitchAdjustValue = aValue;
+        public void SliderAdjustChestPitch(float aValue) => _variationConfig.chestPitchAdjustValue = aValue;
         
         /// <summary>
         /// 調整 胸 的 Yaw
@@ -87,10 +87,10 @@ namespace EthanLin.AssignDataHelper
                 _variationConfig.chestYawAdjustValue = value;
             }
 
-            _chestPitchSlider.value = _variationConfig.chestYawAdjustValue;
+            _chestYawSlider.value = _variationConfig.chestYawAdjustValue;
         }
 
-        public void AdjustChestYaw(float aValue) => _variationConfig.chestYawAdjustValue = aValue;
+        public void SliderAdjustChestYaw(float aValue) => _variationConfig.chestYawAdjustValue = aValue;
         
         /// <summary>
         /// 調整 胸 的 Roll
@@ -116,7 +116,7 @@ namespace EthanLin.AssignDataHelper
             _chestRollSlider.value = _variationConfig.chestRollAdjustValue;
         }
         
-        public void AdjustChestRoll(float aValue) => _variationConfig.chestRollAdjustValue = aValue;
+        public void SliderAdjustChestRoll(float aValue) => _variationConfig.chestRollAdjustValue = aValue;
 
         #endregion
         
@@ -146,7 +146,7 @@ namespace EthanLin.AssignDataHelper
             _pelvisPitchSlider.value = _variationConfig.pelvisPitchAdjustValue;
         }
 
-        public void AdjustPelvisPitch(float aValue) => _variationConfig.pelvisPitchAdjustValue = aValue;
+        public void SliderAdjustPelvisPitch(float aValue) => _variationConfig.pelvisPitchAdjustValue = aValue;
         
         /// <summary>
         /// 調整 腰 的 Yaw
@@ -172,7 +172,7 @@ namespace EthanLin.AssignDataHelper
             _pelvisYawSlider.value = _variationConfig.pelvisYawAdjustValue;
         }
         
-        public void AdjustPelvisYaw(float aValue) => _variationConfig.pelvisYawAdjustValue = aValue;
+        public void SliderAdjustPelvisYaw(float aValue) => _variationConfig.pelvisYawAdjustValue = aValue;
         
         /// <summary>
         /// 調整 腰 的 Roll
@@ -198,7 +198,7 @@ namespace EthanLin.AssignDataHelper
             _pelvisRollSlider.value = _variationConfig.pelvisRollAdjustValue;
         }
         
-        public void AdjustPelvisRoll(float aValue) => _variationConfig.pelvisRollAdjustValue = aValue;
+        public void SliderAdjustPelvisRoll(float aValue) => _variationConfig.pelvisRollAdjustValue = aValue;
 
         #endregion
     }
