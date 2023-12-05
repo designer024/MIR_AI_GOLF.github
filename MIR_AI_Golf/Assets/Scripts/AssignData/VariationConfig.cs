@@ -51,7 +51,7 @@ namespace EthanLin.Variation
         /// <summary>
         /// 只有上半身!?
         /// </summary>
-        [Header("只有上半身!?")] [SerializeField] private bool _onlyUpperBody = false;
+        [Header("只有上半身!?")] [SerializeField] private bool _onlyUpperBody = true;
         /// <summary>
         /// 只有上半身!? get
         /// </summary>

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using DG.Tweening;
+
 using EthanLin.Config;
 using EthanLin.Variation;
 
@@ -14,7 +16,7 @@ namespace EthanLin.AssignDataHelper
         [SerializeField] private DataStringToQuaternionHelper _dataStringToQuaternionHelper;
         [SerializeField] private VariationConfig _variationConfig;
         
-        [Header("RawData角色要站的位置")] [SerializeField] private GameObject _rawdataRoleStandingPoint;
+        [Header("Normal 場景用的, RawData角色要站的位置")] [SerializeField] private GameObject _rawdataRoleStandingPoint;
         
         #region 各個關節物件
 
@@ -178,8 +180,6 @@ namespace EthanLin.AssignDataHelper
                 #region 上半身
 
                 _chestObject.transform.rotation = _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.CHEST];
-                // 胸當下面向的方向
-                _chestForwardVector = Vector3.ProjectOnPlane(_chestObject.transform.forward, Vector3.up);
                 
                 _leftUpperArmObject.transform.rotation = _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.LEFT_UPPER_ARM];
                 _rightUpperArmObject.transform.rotation = _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.RIGHT_UPPER_ARM];
@@ -190,25 +190,21 @@ namespace EthanLin.AssignDataHelper
                 #endregion
                 
                 #region 下半身
-
-                /*_pelvisObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.PELVIS];
-                
-                _leftThighObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.LEFT_THIGH];
-                _rightThighObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.RIGHT_THIGH];
-                
-                _leftCalfObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.LEFT_CALF];
-                _rightCalfObject.transform.rotation = _variationConfig.GetOnlyUpperBody ? Quaternion.identity : _dataStringToQuaternionHelper.GetRawDataQuaternionDictionary[AllPartNameIndex.RIGHT_CALF];*/
                 
                 // 只有上半身
                 if (_variationConfig.GetOnlyUpperBody)
                 {
-                    _pelvisObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                    // 胸當下面向的方向
+                    _chestForwardVector = Vector3.ProjectOnPlane(_chestObject.transform.forward, Vector3.up);
+                    
+                    // _pelvisObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                    _pelvisObject.transform.DOLookAt(_chestForwardVector, 10f, AxisConstraint.Y);
                         
-                    _leftThighObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
-                    _rightThighObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                    _leftThighObject.transform.rotation = _pelvisObject.transform.rotation;
+                    _rightThighObject.transform.rotation = _pelvisObject.transform.rotation;
                 
-                    _leftCalfObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
-                    _rightCalfObject.transform.rotation = Quaternion.LookRotation(_chestForwardVector, Vector3.up);
+                    _leftCalfObject.transform.rotation = _pelvisObject.transform.rotation;
+                    _rightCalfObject.transform.rotation = _pelvisObject.transform.rotation;
                 }
                 // 全身的
                 else

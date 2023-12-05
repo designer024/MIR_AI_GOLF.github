@@ -17,6 +17,7 @@ namespace EthanLin
         [SerializeField] private AR_RoleSelectHelper _arRoleSelectHelper;
 
         [SerializeField] private AlwaysFaceRole _alwaysFaceRole;
+        [SerializeField] private RawDataCameraCenter _rawDataCameraCenter;
         
         [SerializeField] private GameObject _objectToPlace;
 
@@ -47,6 +48,7 @@ namespace EthanLin
                 var hitPose = hits[0].pose;
 
                 _alwaysFaceRole.GetDifferentAngle();
+                _rawDataCameraCenter.FaceRole();
                 
                 GameObject mixed = Instantiate(_objectToPlace, hitPose.position, hitPose.rotation);
                 foreach (Button btn in _arRoleSelectHelper.GetSelectRoleButtons)

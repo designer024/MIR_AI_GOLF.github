@@ -22,6 +22,7 @@ namespace EthanLin
         [SerializeField] private VariationConfig _variationConfig;
         [Header("目前只用在Normal場景")] [SerializeField] private BallBallConfigHelperV2 _ballBallConfigHelperV2;
         [SerializeField] private ChestAndPelvisFinalAdjustHelper _chestAndPelvisFinalAdjustHelper;
+        [SerializeField] private AlwaysFaceRole _alwaysFaceRole;
         
         [Header("目前只用在Normal場景")] [SerializeField] private RoleSelectHelper _roleSelectHelper;
         
@@ -59,6 +60,10 @@ namespace EthanLin
         /// </summary>
         [Header("PIP RawImage AR場景用的")] [SerializeField] private GameObject _PipRawImage, _PipRawImage_Rawdata, _dragMixedImage;
         /// <summary>
+        /// PIP RawImage, 0: 沒有, 1: 只有彩色,2: 彩色和黑白
+        /// </summary>
+        private int _pipState = 0;
+        /// <summary>
         /// PIP 按鈕文字 
         /// </summary>
         [Header("PIP 按鈕文字 AR場景用的")] [SerializeField] private Text _pipButtonLabel;
@@ -76,6 +81,7 @@ namespace EthanLin
         [Header("按鈕音效")] [SerializeField] private Toggle _buttonClickToggle;
         [Header("只有上半身")] [SerializeField] private Toggle _onlyUpperBodyToggle;
         [Header("使用Variation")] [SerializeField] private Toggle _usingVariationToggle;
+        [Header("旋轉角色用的")] [SerializeField] private Toggle _rotateRoleToggle;
         
         [Header("使用球球")] [SerializeField] private Toggle _usingBallBallToggle;
         [Header("胸與腰最後調整")] [SerializeField] private Toggle _chestAndPelvisFinalAdjustToggle;
@@ -84,6 +90,8 @@ namespace EthanLin
         
         private void Start()
         {
+            _pipState = 0;
+            
             if (_sceneIndex == 1)
             {
                 _roleMixedObject.transform.position = new Vector3(100f, 0f, 0f);
@@ -239,10 +247,27 @@ namespace EthanLin
         /// </summary>
         public void TurnOnOffPip()
         {
-            _PipRawImage.SetActive(!_PipRawImage.activeInHierarchy);
-            _PipRawImage_Rawdata.SetActive(_PipRawImage.activeInHierarchy);
+            _pipState++;
+            if (_pipState == 3)
+            {
+                _pipState = 0;
+            }
+            
+            _PipRawImage.SetActive(_pipState > 0);
+            _PipRawImage_Rawdata.SetActive(_pipState == 2);
             _dragMixedImage.SetActive(_PipRawImage.activeInHierarchy);
-            _pipButtonLabel.color = _PipRawImage.activeInHierarchy ? Color.yellow : Color.white;
+            _pipButtonLabel.color = _pipState switch
+            {
+                0 => Color.white,
+                1 => Color.yellow,
+                2 => Color.green,
+                _ => Color.white
+            };
+
+            // _PipRawImage.SetActive(!_PipRawImage.activeInHierarchy);
+            // _PipRawImage_Rawdata.SetActive(_PipRawImage.activeInHierarchy);
+            // _dragMixedImage.SetActive(_PipRawImage.activeInHierarchy);
+            // _pipButtonLabel.color = _PipRawImage.activeInHierarchy ? Color.yellow : Color.white;
         }
         
         public void GotoNormalScene() => SceneManager.LoadScene(1);
@@ -318,6 +343,11 @@ namespace EthanLin
             }
             CloseOptionsPage();
         }
+
+        /// <summary>
+        /// 開啟或關閉 rotate role slider
+        /// </summary>
+        public void SetRotateRoleSliderActive(bool aActive) => _alwaysFaceRole.SetRotateRoleSliderActive(aActive);
 
         #endregion
     }
