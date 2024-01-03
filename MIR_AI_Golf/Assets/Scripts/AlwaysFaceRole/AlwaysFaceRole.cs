@@ -26,6 +26,10 @@ namespace EthanLin
         [Header("Normal Scene用的")] [SerializeField] private GameObject _cameraParent;
         public bool IsFaceRoleInNormalScene { private set; get; }
 
+        private bool _rotateCam;
+        [Header("Normal Scene用的")] [SerializeField] private GameObject _camImage;
+        private float _angleOffset;
+
         #endregion
 
         #region AR Scene用的
@@ -45,10 +49,57 @@ namespace EthanLin
             IsFaceRoleInNormalScene = false;
             IsFaceRoleInArScene = false;
             
+            _rotateCam = false;
+            _camImage.transform.gameObject.SetActive(false);
             _rotateRoleSlider.transform.gameObject.SetActive(false);
         }
+
+        private void Update()
+        {
+            if (_sceneIndex == 1 && _rotateCam)
+            {
+                #region Rotate camera
+
+                Vector3 mousePos = Input.mousePosition;
+
+                if ((mousePos - _camImage.transform.position).magnitude <= 300f)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Vector3 vec3 = Input.mousePosition - _camImage.transform.position;
+                        _angleOffset = (Mathf.Atan2(_camImage.transform.right.y, _camImage.transform.right.x) - Mathf.Atan2(vec3.y, vec3.x)) * Mathf.Rad2Deg;
+                    }
+                }
         
-        public void SetRotateRoleSliderActive(bool aActive) => _rotateRoleSlider.transform.gameObject.SetActive(aActive);
+                if ((mousePos - _camImage.transform.position).magnitude <= 300f)
+                {
+                    if (Input.GetMouseButton(0))
+                    {
+                        Vector3 vec3 = Input.mousePosition - _camImage.transform.position;
+                        float angle = Mathf.Atan2(vec3.y, vec3.x) * Mathf.Rad2Deg;
+                        _camImage.transform.eulerAngles = new Vector3(0f, 0f, angle + _angleOffset);
+                
+                        _cameraParent.transform.rotation = Quaternion.AngleAxis(-(angle + _angleOffset), Vector3.up);
+                    }
+                }
+
+                #endregion
+            }
+        }
+
+        public void SetRotateRoleSliderActive(bool aActive)
+        {
+            if (_sceneIndex == 1)
+            {
+                _camImage.transform.gameObject.SetActive(aActive);
+                _rotateCam = aActive;
+            }
+            else if (_sceneIndex == 2)
+            {
+                _camImage.transform.gameObject.SetActive(aActive);
+                _rotateRoleSlider.transform.gameObject.SetActive(aActive);
+            }
+        }
         
         public void FaceRole()
         {
@@ -59,8 +110,10 @@ namespace EthanLin
                 IsFaceRoleInNormalScene = true;
 
                 float curAngle = Vector3.SignedAngle(_cameraParent.transform.forward, Vector3.forward, Vector3.up);
-                _rotateRoleSlider.value = curAngle;
+                // _rotateRoleSlider.value = curAngle;
                 // _rotateRoleSliderText.text = $"{curAngle}";
+                
+                _camImage.transform.eulerAngles = new Vector3(0f, 0f, -(Vector3.SignedAngle(Vector3.forward, _cameraParent.transform.forward, Vector3.up)));
             }
         }
         
@@ -82,7 +135,7 @@ namespace EthanLin
         {
             if (_sceneIndex == 1)
             {
-                _cameraParent.transform.rotation = Quaternion.AngleAxis(-aValue, Vector3.up);
+                // _cameraParent.transform.rotation = Quaternion.AngleAxis(-aValue, Vector3.up);
                 // _rotateRoleSliderText.text = $"{-aValue}";
             }
         }

@@ -75,6 +75,8 @@ namespace EthanLin
 
         [Header("胸與腰最後調整")] [SerializeField] private GameObject _chestAndPelvisFinalAdjustPanel;
 
+        [Header("是否顯示黑白郎君")] [SerializeField] private Button _isRawDataRoleShowButton;
+
         #region Toggles
 
         [Header("BGM")] [SerializeField] private Toggle _bgmToggle;
@@ -277,6 +279,19 @@ namespace EthanLin
         {
             _optionsSubPages[0].transform.localScale = _optionsSubPages[0].transform.localScale == Vector3.one ? Vector3.zero : Vector3.one;
             _optionsSubPages[1].transform.localScale = _optionsSubPages[0].transform.localScale == Vector3.one ? Vector3.zero : Vector3.one;
+        }
+
+        /// <summary>
+        /// 目前只用在Normal場景, 開啟或關閉RawData
+        /// </summary>
+        public void SetIsRawDataRoleShow()
+        {
+            if (_sceneIndex == 1)
+            {
+                bool curValue = _variationConfig.GetIsRawDataRoleShow;
+                _variationConfig.SetIsRawDataRoleShow(!curValue);
+                _isRawDataRoleShowButton.transform.GetChild(0).GetComponent<RawImage>().color = _variationConfig.GetIsRawDataRoleShow ? Color.white : new Color(1f, 1f, 1f, 0.3f);
+            }
         }
         
         #region Toggles 功能

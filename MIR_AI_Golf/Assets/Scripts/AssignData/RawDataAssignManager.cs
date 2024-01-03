@@ -172,7 +172,7 @@ namespace EthanLin.AssignDataHelper
         {
             if (_senenIndex == 1)
             {
-                this.transform.position = _rawdataRoleStandingPoint.transform.position;
+                this.transform.position = _variationConfig.GetIsRawDataRoleShow ? _rawdataRoleStandingPoint.transform.position : new Vector3(100f, 0f, 0f);
             }
             
             if (_dataStringToQuaternionHelper != null)

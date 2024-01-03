@@ -60,6 +60,19 @@ namespace EthanLin.Variation
         /// 只有上半身!? set
         /// </summary>
         public void SetOnlyUpperBody(bool aOnlyUpperBody) => _onlyUpperBody = aOnlyUpperBody;
+
+        /// <summary>
+        /// 是否顯示黑白郎君
+        /// </summary>
+        [Header("是否顯示黑白郎君")] [SerializeField] private bool _isRawDataRoleShow = false;
+        /// <summary>
+        /// 是否顯示黑白郎君
+        /// </summary>
+        public bool GetIsRawDataRoleShow => _isRawDataRoleShow;
+        /// <summary>
+        /// 是否顯示黑白郎君
+        /// </summary>
+        public void SetIsRawDataRoleShow(bool aIsRawDataRoleShow) => _isRawDataRoleShow = aIsRawDataRoleShow;
         
         /// <summary>
         /// 胸 Pitch, -20 ~ 20

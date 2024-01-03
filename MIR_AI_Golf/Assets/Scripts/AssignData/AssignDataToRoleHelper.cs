@@ -193,7 +193,14 @@ namespace EthanLin.AssignDataHelper
         {
             if (_alwaysFaceRole.GetSceneIndex == 1)
             {
-                this.gameObject.transform.position = _isUsingBallBall ? new Vector3(100f, 0f, 0f) : _roleSelectHelper.GetColorfulRoleStandingPoint.transform.position;
+                if (_isUsingBallBall)
+                {
+                    this.gameObject.transform.position = new Vector3(100f, 0f, 0f);
+                }
+                else
+                {
+                    this.gameObject.transform.position = _vectorVariationManager.GetVariationConfig.GetIsRawDataRoleShow ? _roleSelectHelper.GetColorfulRoleStandingPoint.transform.position : Vector3.zero;
+                }
             }
             
             if (_vectorVariationManager != null && _alwaysFaceRole != null)
