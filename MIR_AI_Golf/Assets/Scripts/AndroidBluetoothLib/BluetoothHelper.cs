@@ -6,8 +6,8 @@ namespace EthanLin.AndroidBluetoothLib
 {
     public class BluetoothHelper : BluetoothAbstractHelper
     {
-        private AndroidJavaObject _deviceListJavaObject;
-        private AndroidJavaObject _deviceMapJavaObject;
+        public AndroidJavaObject deviceListJavaObject { private set; get; }
+        public AndroidJavaObject deviceMapJavaObject { private set; get; }
 
         /// <summary>
         /// 建構子
@@ -15,6 +15,8 @@ namespace EthanLin.AndroidBluetoothLib
         public BluetoothHelper() : base("com.ethanlin.btlibrary", "UnityBluetoothDataLib")
         {
             AndroidBluetoothJavaObject = AndroidBluetoothJavaClass.CallStatic<AndroidJavaObject>("getInstance");
+            deviceListJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceList");
+            deviceMapJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceMap");
         }
         
         /// <summary>
@@ -94,10 +96,10 @@ namespace EthanLin.AndroidBluetoothLib
         /// </summary>
         public int GetAndroidDeviceListSize()
         {
-            _deviceListJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceList");
-            if (_deviceListJavaObject != null)
+            deviceListJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceList");
+            if (deviceListJavaObject != null)
             {
-                return _deviceListJavaObject.Call<int>("size");
+                return deviceListJavaObject.Call<int>("size");
             }
             else
             {
@@ -110,10 +112,10 @@ namespace EthanLin.AndroidBluetoothLib
         /// </summary>
         public int GetAndroidDeviceMapSize()
         {
-            _deviceMapJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceMap");
-            if (_deviceMapJavaObject != null)
+            deviceMapJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceMap");
+            if (deviceMapJavaObject != null)
             {
-                return _deviceMapJavaObject.Call<int>("size");
+                return deviceMapJavaObject.Call<int>("size");
             }
             else
             {
@@ -123,33 +125,33 @@ namespace EthanLin.AndroidBluetoothLib
 
         public AndroidJavaObject GetBluetoothDeviceFromMapWithAddress(string aDeviceAddress)
         {
-            _deviceMapJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceMap");
-            return _deviceMapJavaObject.Call<AndroidJavaObject>("get", aDeviceAddress);
+            deviceMapJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceMap");
+            return deviceMapJavaObject.Call<AndroidJavaObject>("get", aDeviceAddress);
         }
 
-        public string GetAndroidDeviceListDeviceName(int aIndex)
+        public string GetDeviceName(AndroidJavaObject aAndroidJavaObject)
         {
-            _deviceListJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceList");
-            if (_deviceListJavaObject != null)
+            if (AndroidBluetoothJavaObject != null)
             {
-                return _deviceListJavaObject.Call<AndroidJavaObject>("get", aIndex).Call<string>("getName");
+                return AndroidBluetoothJavaObject.Call<string>("getDeviceName", aAndroidJavaObject);
             }
             else
             {
-                return "Nothing";
+                Debug.LogError($"{AllConfigs.DEBUG_TAG} Error, AndroidBluetoothJavaObject is null!!!");
+                return "AndroidInstanceJavaObject is null";
             }
         }
-
-        public string GetAndroidDeviceListDeviceAddress(int aIndex)
+        
+        public string GetDeviceAddress(AndroidJavaObject aAndroidJavaObject)
         {
-            _deviceListJavaObject = AndroidBluetoothJavaClass.GetStatic<AndroidJavaObject>("deviceList");
-            if (_deviceListJavaObject != null)
+            if (AndroidBluetoothJavaObject != null)
             {
-                return _deviceListJavaObject.Call<AndroidJavaObject>("get", aIndex).Call<string>("getAddress");
+                return AndroidBluetoothJavaObject.Call<string>("getDeviceAddress", aAndroidJavaObject);
             }
             else
             {
-                return "Nothing";
+                Debug.LogError($"{AllConfigs.DEBUG_TAG} Error, AndroidBluetoothJavaObject is null!!!");
+                return "AndroidInstanceJavaObject is null";
             }
         }
 
@@ -162,6 +164,22 @@ namespace EthanLin.AndroidBluetoothLib
             if (AndroidBluetoothJavaObject != null)
             {
                 AndroidBluetoothJavaObject.Call("connectBluetoothDevice", aIndex);
+            }
+            else
+            {
+                Debug.LogError($"{AllConfigs.DEBUG_TAG} Error, bluetooth library Java object is null!!!");
+            }
+        }
+        
+        /// <summary>
+        /// 連接裝置 with list index
+        /// </summary>
+        /// <param name="aDeviceAddress">device address</param>
+        public void ConnectBluetoothDevice(string aDeviceAddress)
+        {
+            if (AndroidBluetoothJavaObject != null)
+            {
+                AndroidBluetoothJavaObject.Call("connectBluetoothDevice", aDeviceAddress);
             }
             else
             {

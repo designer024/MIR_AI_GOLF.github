@@ -71,6 +71,12 @@ namespace EthanLin.AndroidBluetoothLib
             _bluetoothHelper.StopScan();
         }
 
+        private void StopScanV2()
+        {
+            CancelInvoke();
+            _bluetoothHelper.StopScan();
+        }
+
         #endregion
 
         #region public 方法
@@ -80,6 +86,12 @@ namespace EthanLin.AndroidBluetoothLib
             _isFoundDevice = false;
             _bluetoothHelper.ScanBluetoothDevices();
             Invoke(nameof(StopScan), 6f);
+        }
+
+        public void ScanBluetoothDevicesV2()
+        {
+            _bluetoothHelper.ScanBluetoothDevices();
+            Invoke(nameof(StopScanV2), 6f);
         }
         
         public void SelectBluetoothToConnect(int aIndex)
@@ -98,6 +110,11 @@ namespace EthanLin.AndroidBluetoothLib
         /// </summary>
         /// <param name="aIndex">清單的index</param>
         public void ConnectBluetoothDevice(int aIndex) => _bluetoothHelper.ConnectBluetoothDevice(aIndex);
+        /// <summary>
+        /// 連接裝置 with list index
+        /// </summary>
+        /// <param name="aDeviceAddress">device address</param>
+        public void ConnectBluetoothDevice(string aDeviceAddress) => _bluetoothHelper.ConnectBluetoothDevice(aDeviceAddress);
         
         /// <summary>
         /// 斷開所有藍牙裝置

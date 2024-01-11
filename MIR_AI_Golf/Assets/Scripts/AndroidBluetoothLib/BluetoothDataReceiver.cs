@@ -25,7 +25,8 @@ namespace EthanLin.AndroidBluetoothLib
         /// <summary>
         /// 連接至藍牙裝置
         /// </summary>
-        private void ConnectBluetoothDevice() => _bluetoothManager.ConnectBluetoothDevice();
+        // private void ConnectBluetoothDevice() => _bluetoothManager.ConnectBluetoothDevice();
+        private void ConnectBluetoothDevice() => _bluetoothManager.ConnectBluetoothDevice(ConnectDeiceAddressSingleton.GetInstance().CONNECT_DEVICE_ADDRESS);
 
         /// <summary>
         /// Called by android library 在AR場景使用

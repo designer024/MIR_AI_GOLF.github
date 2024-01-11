@@ -9,7 +9,6 @@ using EthanLin.Config;
 
 namespace EthanLin.AssignDataHelper
 {
-    [RequireComponent(typeof(AssignOnlyUpperBody))]
     public class AssignDataToRoleHelper : MonoBehaviour
     {
         [SerializeField] private VectorVariationManager _vectorVariationManager;
@@ -169,6 +168,12 @@ namespace EthanLin.AssignDataHelper
         /// </summary>
         private Vector3 _chestForwardVector;
         
+        [SerializeField] private float _leftFootFixed;
+        [SerializeField] private float _rightFootFixed;
+
+        private Vector3 _leftKneeVector;
+        private Vector3 _rightKneeVector;
+        
         private void Start()
         {
             _isUsingBallBall = false;
@@ -297,6 +302,32 @@ namespace EthanLin.AssignDataHelper
 
                     #endregion
                 }
+
+
+                if (_vectorVariationManager.GetVariationConfig.GetOnlyUpperBody) return;
+                    
+                _leftKneeVector = Vector3.Cross(_leftThighObject.transform.up, _leftCalfObject.transform.up);
+                _rightKneeVector = Vector3.Cross(_rightThighObject.transform.up, _rightCalfObject.transform.up);
+                
+                if ((_leftThighObject.transform.position - _leftAnkleObject.transform.position).magnitude < 0.70f)
+                {
+                    Debug.Log("左腿彎曲");
+                    Vector3 lcForward = Vector3.Cross(_leftKneeVector, _leftCalfObject.transform.up);
+                    _leftCalfObject.transform.rotation = Quaternion.LookRotation(lcForward, _leftCalfObject.transform.up);
+                }
+                
+                if ((_rightThighObject.transform.position - _rightAnkleObject.transform.position).magnitude < 0.70f)
+                {
+                    Debug.Log("右腿彎曲");
+                    Vector3 rcForward = Vector3.Cross(_rightKneeVector, _rightCalfObject.transform.up);
+                    _rightCalfObject.transform.rotation = Quaternion.LookRotation(rcForward, _rightCalfObject.transform.up);
+                }
+                
+                _leftAnkleObject.transform.rotation = Quaternion.LookRotation(_leftThighObject.transform.right, _leftCalfObject.transform.up);
+                _rightAnkleObject.transform.rotation = Quaternion.LookRotation(_rightThighObject.transform.right, _rightCalfObject.transform.up);
+        
+                _leftAnkleObject.transform.Rotate(0f, _leftFootFixed, 0f);
+                _rightAnkleObject.transform.Rotate(0f, _rightFootFixed, 0f);
             }
             else
             {

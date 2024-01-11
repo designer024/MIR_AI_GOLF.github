@@ -17,6 +17,11 @@ TagManager:
   - RoleMixed
   - AlwaysFaceRole
   - DragTheMixed
+  - FinalRole
+  - LeftLegWall
+  - RightLegWall
+  - ConnectDeviceButton
+  - StartUpManager
   layers:
   - Default
   - TransparentFX
